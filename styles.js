@@ -28,7 +28,7 @@ var styles = StyleSheet.create({
     paddingBottom: 16,
   },
   liContainer: {
-    flex: 2,
+    flex: 1,
   },
   liText: {
     color: '#333',
@@ -46,7 +46,7 @@ var styles = StyleSheet.create({
     width: '100%'
   },
   navbarTitle: {
-    flex: 2,
+    flex: 1,
     color: '#444',
     fontSize: 16,
     fontWeight: '500',
@@ -109,6 +109,16 @@ var styles = StyleSheet.create({
   },
   alignRight: {
     flex: 1
+  },
+  drawer: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    height: '100%',
+    padding: 20
+  },
+  drawerButton: {
+    margin: 10
   }
 })
 module.exports = styles

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactNative from 'react-native';
 const styles = require('../styles.js')
-const { Button, StyleSheet, Text, View} = ReactNative;
+const { Text, View} = ReactNative;
 
 class StatusBar extends Component {
   render() {
@@ -10,7 +10,6 @@ class StatusBar extends Component {
         <View style={styles.statusbar}/>
         <View style={styles.navbar}>
           <Text style={styles.navbarTitle}>{this.props.title}</Text>
-          <Button style={styles.alignRight} onPress={this.props.onPress} title="Log out" />
         </View>
       </View>
     );

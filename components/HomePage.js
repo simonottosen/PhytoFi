@@ -7,7 +7,6 @@ import ActionButton from './ActionButton';
 import ListItem from './ListItem';
 import styles from '../styles';
 const {
-  AsyncStorage,
   ListView,
   StyleSheet,
   TextInput,
@@ -27,15 +26,6 @@ class HomePage extends Component {
       })
     };
     this.itemsRef = this.getRef().child('items');
-  }
-  async userLogout() {
-    try {
-      await AsyncStorage.removeItem('id_token');
-      Alert.alert('Log Out Successfully!');
-      Actions.Authentication();
-    } catch (error) {
-      console.log('AsyncStorage error: ' + error.message);
-    }
   }
   getRef() {
     return firebase.database().ref();
@@ -64,7 +54,6 @@ class HomePage extends Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.listContainer} behavior="padding" >
-        <StatusBar onPress={this.userLogout.bind(this)} title="Grocery List" />
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this._renderItem.bind(this)}
