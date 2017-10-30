@@ -9,12 +9,12 @@ import Camera from './components/Camera';
 import DrawerContent from './components/DrawerContent';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAbQn5CP8cU80pFhrmmTmDw5w9SOc_QfGE",
-  authDomain: "securedbase-d861b.firebaseapp.com",
-  databaseURL: "https://securedbase-d861b.firebaseio.com",
-  projectId: "securedbase-d861b",
-  storageBucket: "securedbase-d861b.appspot.com",
-  messagingSenderId: "3497891805"
+  apiKey: "AIzaSyAbDaMFCjAbSq105yNi8C3kVDrSOg2_6Jw",
+  authDomain: "phytofi.firebaseapp.com",
+  databaseURL: "https://phytofi.firebaseio.com",
+  projectId: "phytofi",
+  storageBucket: "phytofi.appspot.com",
+  messagingSenderId: "695300792829"
 };
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 console.ignoredYellowBox = [
