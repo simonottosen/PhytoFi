@@ -36,7 +36,7 @@ export default class Movies extends Component {
           isLoading: false,
           dataSource: ds.cloneWithRows(responseJson.weather),
         }, function() {
-          // do something with new state
+          alert("By opdateret");
         });
       })
       .catch((error) => {
@@ -51,16 +51,7 @@ export default class Movies extends Component {
     };
     
 
-    if (this.state.isLoading) {
-      return (
-        
-        <View style={{flex: 1, paddingTop: 20}}>
-          <ActivityIndicator />
-          
-        </View>
-        
-      );
-    }
+
     
     return (
       <View style={{paddingTop: 50}}>
@@ -78,7 +69,6 @@ export default class Movies extends Component {
           
         />
         <Image source={pic} style={{width: 193, height: 110}}/>
-        <Text>{this.state.text}</Text>
 
         <Button
           onPress={this.getWeather.bind(this)}
@@ -92,11 +82,11 @@ export default class Movies extends Component {
 
       </View>
 
-    
+  
 
 
     );
    
-    
+   
   }
 }
