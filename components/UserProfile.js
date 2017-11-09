@@ -57,21 +57,6 @@ class UserProfile extends Component {
     })
     .then(() => {
       this.setState({ loading: false });
-      var user = {
-        disname: this.state.disname,
-        gender: this.state.gender,
-        type: this.state.type,
-        uid: this.state.uid,
-        token: ''
-      };
-      firebase.auth().currentUser.getIdToken().then(function(idToken) {
-        user.token = idToken;
-        AsyncStorage.setItem('user', JSON.stringify(user));
-        Alert.alert( 'Update Successful!');
-      })
-      .catch((err) => {
-        this.setState({ error: 'Failed to obtain user ID token.'+err, loading: false });
-      });
     })
     .catch((err) => {
       this.setState({ 

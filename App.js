@@ -6,18 +6,17 @@ import * as firebase from 'firebase';
 import Authentication from './components/Authentication';
 import HomePage from './components/HomePage';
 import PhotoPage from './components/PhotoPage';
-import MapPage from './components/MapPage';
 import CameraPage from './components/CameraPage';
 import UserProfile from './components/UserProfile';
 import DrawerContent from './components/DrawerContent';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAbDaMFCjAbSq105yNi8C3kVDrSOg2_6Jw",
-  authDomain: "phytofi.firebaseapp.com",
-  databaseURL: "https://phytofi.firebaseio.com",
-  projectId: "phytofi",
-  storageBucket: "phytofi.appspot.com",
-  messagingSenderId: "695300792829"
+  apiKey: "AIzaSyAbQn5CP8cU80pFhrmmTmDw5w9SOc_QfGE",
+  authDomain: "securedbase-d861b.firebaseapp.com",
+  databaseURL: "https://securedbase-d861b.firebaseio.com",
+  projectId: "securedbase-d861b",
+  storageBucket: "securedbase-d861b.appspot.com",
+  messagingSenderId: "3497891805"
 };
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 console.ignoredYellowBox = [
@@ -94,16 +93,6 @@ export default class App extends Component {
                     component={PhotoPage}
                     key='PhotoPage'
                     title='Photo Page'
-                  />
-                </Scene>
-                <Scene
-                  key="MapTab"
-                  title="google-maps"
-                  icon={TabIcon}>
-                  <Scene
-                    component={MapPage}
-                    key='MapPage'
-                    title='Map Page'
                   />
                 </Scene>
                 <Scene

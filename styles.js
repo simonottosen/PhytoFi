@@ -137,6 +137,13 @@ var styles = StyleSheet.create({
   drawerButton: {
     margin: 10
   },
+  preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width
+  },
   capture: {
     flex: 0,
     backgroundColor: '#fff',
@@ -160,23 +167,6 @@ var styles = StyleSheet.create({
     borderRadius: 30,
     padding: 10,
     margin: 40
-  },
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    height: Dimensions.get('window').height,
-    width: Dimensions.get('window').width
-  },
-  map: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0
-  },
-  callout: {
-    width: 60
   }
 })
 module.exports = styles

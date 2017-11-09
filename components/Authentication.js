@@ -33,7 +33,6 @@ class Authentication extends Component {
   userAuth() {
     this.setState({ error: '', loading: true });
     const { email, password } = this.state;
-    console.log('email: '+email);
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(() => {
       var user = firebase.auth().currentUser;
@@ -41,19 +40,28 @@ class Authentication extends Component {
       this.setState({ error: '', loading: false });
     })
     .catch((err) => {
-      //Login was not successful, let's create a new account
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(() => { 
-        this.setState({ error: '', loading: false });
-        this.createProfile(this.proRef);
-      })
-      .catch((err) => {
-          this.setState({ error: 'Authentication failed. '+err, loading: false });
-      });
+      this.setState({ error: 'Authentication failed. '+err, loading: false });
+        //Login was not successful, let's create a new account
+        // firebase.auth().createUserWithEmailAndPassword(email, password)
+        // .then(() => { 
+        //   this.setState({ error: '', loading: false });
+        //   firebase.auth().currentUser.getIdToken().then(function(idToken) {
+        //     AsyncStorage.setItem('id_token', idToken);
+        //     console.log(idToken);
+        //     Alert.alert( 'Sign Up Successfully!', 'Click the button to go to Home Page!');
+        //     Actions.Tabbar();
+        //   })
+        //   .catch(() => {
+        //     this.setState({ error: 'Failed to obtain user ID token.', loading: false });
+        //   });
+        // })
+        // .catch((err) => {
+        //     this.setState({ error: 'Authentication failed. '+err, loading: false });
+        // });
     });
   }
   listenForProfile(proRef) {
-    proRef.once('value', (snap) => {
+    proRef.on('value', (snap) => {
       this.setState({
         loading: false,
         error: ''
@@ -75,29 +83,6 @@ class Authentication extends Component {
         this.setState({ error: 'Failed to obtain user ID token.'+err, loading: false });
       });
     });
-  }
-  createProfile(proRef) {
-    var user = {
-      disname: '',
-      gender: 'unknown',
-      type: 'buyer',
-      uid: '',
-      token: ''
-    };
-    var currentUser = firebase.auth().currentUser;
-    currentUser.getIdToken().then(function(idToken) {
-      user.token = idToken;
-      user.uid = currentUser.uid;
-      user.disname = currentUser.email;
-      proRef.child(user.uid).set({
-        disname: user.disname,
-        gender: user.gender,
-        type: user.type
-      });
-      AsyncStorage.setItem('user', JSON.stringify(user));
-      Alert.alert( 'Sign Up Successfully!', 'Click the button to go to Home Page!');
-      Actions.Tabbar();
-    })
   }
   renderButtonOrSpinner() {
     if (this.state.loading) {
