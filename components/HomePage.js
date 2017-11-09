@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
 import { ActivityIndicator, Button, ListView, Text, View, Image, TextInput } from 'react-native';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAbDaMFCjAbSq105yNi8C3kVDrSOg2_6Jw",
-  authDomain: "phytofi.firebaseapp.com",
-  databaseURL: "https://phytofi.firebaseio.com",
-  projectId: "phytofi",
-  storageBucket: "phytofi.appspot.com",
-  messagingSenderId: "695300792829"
-};
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+
 
 
 export default class Movies extends Component {
@@ -18,6 +10,7 @@ export default class Movies extends Component {
     this.state = {
       isLoading: true,
       text: 'Copenhagen'
+      
     };
   }
 
