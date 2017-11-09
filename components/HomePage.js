@@ -1,104 +1,72 @@
-import React, {Component} from 'react';
-import ReactNative from 'react-native';
-import {Actions} from 'react-native-router-flux';
-import * as firebase from 'firebase';
-import StatusBar from './StatusBar';
-import ActionButton from './ActionButton';
-import ListItem from './ListItem';
-import styles from '../styles';
-const {
-  AsyncStorage,
-  ListView,
-  StyleSheet,
-  TextInput,
-  Text,
-  View,
-  KeyboardAvoidingView,
-  TouchableHighlight,
-  Alert
-} = ReactNative;
+import React, { Component } from 'react';
+import { ActivityIndicator, ListView, Text, View, Image, TextInput } from 'react-native';
 
-class HomePage extends Component {
+export default class Movies extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
-      })
-    };
-    this.itemsRef = this.getRef().child('items');
-  }
-  async userLogout() {
-    try {
-      await AsyncStorage.removeItem('id_token');
-      Alert.alert('Log Out Successfully!');
-      Actions.Authentication();
-    } catch (error) {
-      console.log('AsyncStorage error: ' + error.message);
+      isLoading: true
     }
   }
-  getRef() {
-    return firebase.database().ref();
-  }
-  listenForItems(itemsRef) {
-    itemsRef.on('value', (snap) => {
 
-      // get children as an array
-      var items = [];
-      snap.forEach((child) => {
-        items.push({
-          title: child.val().title,
-          _key: child.key
-        });
-      });
-
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(items)
-      });
-
-    });
-  }
   componentDidMount() {
-    this.listenForItems(this.itemsRef);
+    return fetch('http://api.openweathermap.org/data/2.5/weather?q=Dublin&APPID=f873241aae3dee39adf62042e70a44c9')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.setState({
+          isLoading: false,
+          dataSource: ds.cloneWithRows(responseJson.weather),
+        }, function() {
+          // do something with new state
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
-  render() {
-    return (
-      <KeyboardAvoidingView style={styles.listContainer} behavior="padding" >
-        <StatusBar onPress={this.userLogout.bind(this)} title="Grocery List" />
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this._renderItem.bind(this)}
-          enableEmptySections={true}
-          style={styles.listview}/>
-        <TextInput
-          style={{height: 40}}
-          placeholder="Type here to add!"
-          onChangeText={(text) => this.setState({text})}
-        />
-        <ActionButton onPress={this._addItem.bind(this)} title="Add" />
 
-      </KeyboardAvoidingView>
-    )
-  }
-  _addItem() {
-    this.itemsRef.push({ title: this.state.text });
-  }
-  _renderItem(item) {
-    const onPress = () => {
-      Alert.alert(
-        'Delete: '+item.title+'?',
-        null,
-        [
-          {text: 'Yes', onPress: (text) => this.itemsRef.child(item._key).remove()},
-          {text: 'Cancel', onPress: (text) => console.log('Cancelled')}
-        ],
-        {cancelable: false}
-      );
+  render() {
+    let pic = {
+      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
     };
 
+    if (this.state.isLoading) {
+      return (
+        
+        <View style={{flex: 1, paddingTop: 20}}>
+          <ActivityIndicator />
+          
+        </View>
+        
+      );
+    }
+    
     return (
-      <ListItem item={item} onPress={onPress} />
+      <View style={{paddingTop: 50}}>
+        <TextInput
+          style={{height: 40}}
+          placeholder="Hej Rune! "
+          onChangeText={(text) => this.setState({text})}
+        />
+
+
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={(rowData) => <Text>The weather today is going to be {rowData.main}.</Text>}
+        />
+        <Image source={pic} style={{width: 193, height: 110}}/>
+        
+        
+
+      </View>
+
+      
+
+
+
     );
+
+    
   }
 }
-module.exports = HomePage;
