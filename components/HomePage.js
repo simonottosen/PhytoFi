@@ -22,6 +22,7 @@ export default class Movies extends Component {
   }
 
   componentDidMount(){
+    
     this.getWeather();
   }
 
@@ -39,7 +40,7 @@ export default class Movies extends Component {
         });
       })
       .catch((error) => {
-        console.error(error);
+        alert("Fejl");
       });
     
   }
