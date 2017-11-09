@@ -1,5 +1,5 @@
 const React = require('react-native')
-const {StyleSheet} = React
+const {StyleSheet, Dimensions} = React
 const constants = {
   actionColor: '#24CE84'
 };
@@ -10,6 +10,12 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     height: '100%',
     padding: 50
+  },
+  panelContrainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF'
   },
   listContainer: {
     backgroundColor: '#f2f2f2',
@@ -26,12 +32,23 @@ var styles = StyleSheet.create({
     paddingLeft: 16,
     paddingTop: 14,
     paddingBottom: 16,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
   liContainer: {
     flex: 1,
   },
+  liImg: {
+    flex: 0,
+    width: 50,
+    height: 50
+  },
   liText: {
+    flex: 1,
     color: '#333',
+    textAlign: 'center',
     fontSize: 16,
   },
   navbar: {
@@ -119,6 +136,47 @@ var styles = StyleSheet.create({
   },
   drawerButton: {
     margin: 10
+  },
+  capture: {
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 30,
+    padding: 10,
+    margin: 40
+  },
+  photoButtons: {
+    position: 'absolute',
+    width: Dimensions.get('window').width,
+    bottom: 0,
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+    justifyContent: 'space-around'
+  },
+  photoButton: {
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 30,
+    padding: 10,
+    margin: 40
+  },
+  preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width
+  },
+  map: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
+  },
+  callout: {
+    width: 60
   }
 })
 module.exports = styles
