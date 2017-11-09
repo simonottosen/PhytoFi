@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, ListView, Text, View, Image, TextInput } from 'react-native';
+import { ActivityIndicator, Button, ListView, Text, View, Image, TextInput } from 'react-native';
 
 export default class Movies extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
-      text: 'London'
+      text: 'Copenhagen'
     };
   }
 
-  
+  componentDidMount(){
+    this.getWeather();
+  }
 
-  componentDidMount() {
+  getWeather() {
     
     return fetch('http://api.openweathermap.org/data/2.5/weather?q='+this.state.text+'&APPID=f873241aae3dee39adf62042e70a44c9')
       .then((response) => response.json())
@@ -61,10 +63,17 @@ export default class Movies extends Component {
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(rowData) => <Text>The weather today is going to be {rowData.main}.</Text>}
-      
+          
         />
         <Image source={pic} style={{width: 193, height: 110}}/>
         <Text>{this.state.text}</Text>
+
+        <Button
+          onPress={this.getWeather.bind(this)}
+          title="Update"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
         
         
        
