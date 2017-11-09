@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, Button, ListView, Text, View, Image, TextInput } from 'react-native';
-
+import { ActivityIndicator, Button, ListView, Text, View, Image, TextInput, TouchableHighlight, StyleSheet, AsyncStorage, Alert, KeyboardAvoidingView } from 'react-native';
+import {Actions} from 'react-native-router-flux';
+import * as firebase from 'firebase';
+import StatusBar from './StatusBar';
+import ActionButton from './ActionButton';
+import ListItem from './ListItem';
+import styles from '../styles';
 
 
 
@@ -9,8 +14,10 @@ export default class Movies extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      text: 'Copenhagen'
-      
+      text: 'Copenhagen',
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2,})
+
     };
   }
 
