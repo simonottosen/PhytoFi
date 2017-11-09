@@ -9,7 +9,7 @@ import styles from '../styles';
 
 
 
-export default class Movies extends Component {
+export default class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +19,13 @@ export default class Movies extends Component {
         rowHasChanged: (row1, row2) => row1 !== row2,})
 
     };
+    this.itemsRef = this.getRef().child('items');
+    
   }
+  getRef() {
+    return firebase.database().ref();
+  }
+  
 
   componentDidMount(){
     
@@ -90,3 +96,4 @@ export default class Movies extends Component {
    
   }
 }
+module.exports = HomePage;
