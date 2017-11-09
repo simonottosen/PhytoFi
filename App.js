@@ -5,9 +5,13 @@ import {Drawer, Router, Scene, Tabs} from 'react-native-router-flux';
 import * as firebase from 'firebase';
 import Authentication from './components/Authentication';
 import HomePage from './components/HomePage';
+<<<<<<< HEAD
 import PhotoPage from './components/PhotoPage';
 import CameraPage from './components/CameraPage';
 import UserProfile from './components/UserProfile';
+=======
+import Camera from './components/Camera';
+>>>>>>> parent of aa89d91... Copy of Final project
 import DrawerContent from './components/DrawerContent';
 
 const firebaseConfig = {
@@ -46,8 +50,8 @@ export default class App extends Component {
     this.state = { hasToken: false, isLoaded: false };
   }
   componentWillMount() {
-    AsyncStorage.getItem('user').then((user) => {
-      this.setState({ hasToken: user !== null, isLoaded: true });
+    AsyncStorage.getItem('id_token').then((token) => {
+      this.setState({ hasToken: token !== null, isLoaded: true });
     });
   }
   render() {
@@ -67,7 +71,7 @@ export default class App extends Component {
               title='Authentication'
             />
             <Drawer
-              hideNavBar={true}
+              hideNavBar
               key="drawer"
               contentComponent={DrawerContent}
             >
@@ -89,30 +93,23 @@ export default class App extends Component {
                     key='HomePage'
                     title='Home Page'
                   />
+<<<<<<< HEAD
                   <Scene
                     component={PhotoPage}
                     key='PhotoPage'
                     title='Photo Page'
                   />
+=======
+>>>>>>> parent of aa89d91... Copy of Final project
                 </Scene>
                 <Scene
                   key="CameraTab"
                   title="camera"
                   icon={TabIcon}>
                   <Scene
-                    component={CameraPage}
-                    key='CameraPage'
-                    title='Camera Page'
-                  />
-                </Scene>
-                <Scene
-                  key="ProfileTab"
-                  title="account"
-                  icon={TabIcon}>
-                  <Scene
-                    component={UserProfile}
-                    key='UserProfile'
-                    title='User Profile'
+                    component={Camera}
+                    key='Camera'
+                    title='Camera'
                   />
                 </Scene>
               </Tabs>

@@ -18,26 +18,20 @@ const {
 class Authentication extends Component {
   constructor() {
     super();
-    this.state = { 
-      loading: false,
-      email: '',
-      password: '',
-      disname: '',
-      gender: 'unknown',
-      type: 'buyer',
-      uid: '',
-      error: '',
-    };
-    this.proRef = firebase.database().ref().child('profiles');
+    this.state = { username: '', password: '', loading: false, error: '' };
   }
   userAuth() {
     this.setState({ error: '', loading: true });
+<<<<<<< HEAD
     const { email, password } = this.state;
     firebase.auth().signInWithEmailAndPassword(email, password)
+=======
+    const { username, password } = this.state;
+    firebase.auth().signInWithEmailAndPassword(username, password)
+>>>>>>> parent of aa89d91... Copy of Final project
     .then(() => {
-      var user = firebase.auth().currentUser;
-      this.listenForProfile(this.proRef.child(user.uid));
       this.setState({ error: '', loading: false });
+<<<<<<< HEAD
     })
     .catch((err) => {
       this.setState({ error: 'Authentication failed. '+err, loading: false });
@@ -73,22 +67,46 @@ class Authentication extends Component {
         uid: snap.key,
         token: ''
       };
+=======
+>>>>>>> parent of aa89d91... Copy of Final project
       firebase.auth().currentUser.getIdToken().then(function(idToken) {
-        user.token = idToken;
-        AsyncStorage.setItem('user', JSON.stringify(user));
+        AsyncStorage.setItem('id_token', idToken);
+        console.log(idToken);
         Alert.alert( 'Sign In Successfully!', 'Click the button to go to Home Page!');
         Actions.Tabbar();
       })
       .catch((err) => {
         this.setState({ error: 'Failed to obtain user ID token.'+err, loading: false });
       });
+<<<<<<< HEAD
+=======
+    })
+    .catch((err) => {
+        //Login was not successful, let's create a new account
+        firebase.auth().createUserWithEmailAndPassword(username, password)
+        .then(() => { 
+          this.setState({ error: '', loading: false });
+          firebase.auth().currentUser.getIdToken().then(function(idToken) {
+            AsyncStorage.setItem('id_token', idToken);
+            console.log(idToken);
+            Alert.alert( 'Sign Up Successfully!', 'Click the button to go to Home Page!');
+            Actions.Tabbar();
+          })
+          .catch(() => {
+            this.setState({ error: 'Failed to obtain user ID token.', loading: false });
+          });
+        })
+        .catch((err) => {
+            this.setState({ error: 'Authentication failed. '+err, loading: false });
+        });
+>>>>>>> parent of aa89d91... Copy of Final project
     });
   }
   renderButtonOrSpinner() {
     if (this.state.loading) {
         return <ActivityIndicator size='small' />;    
     }
-    return <Button onPress={this.userAuth.bind(this)} title="Log in" />;
+    return <Button onPress={this.userAuth.bind(this)} title="Log in/Sign up" />;
   }
   render() {
     return (
@@ -98,9 +116,9 @@ class Authentication extends Component {
         <View style={styles.form}>
           <TitledInput
             label='Email Address'
-            onChangeText={(email) => this.setState({email})}
+            onChangeText={(username) => this.setState({username})}
             placeholder='Username'
-            value={this.state.email}
+            value={this.state.username}
           />
 
           <TitledInput

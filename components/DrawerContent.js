@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ReactNative from 'react-native';
-import * as firebase from 'firebase';
 import {Actions} from 'react-native-router-flux';
 import ActionButton from './ActionButton';
 import styles from '../styles';
@@ -23,6 +22,7 @@ class DrawerContent extends Component{
   static contextTypes = {
     drawer: React.PropTypes.object,
   }
+<<<<<<< HEAD
   userLogout() {
     firebase.auth().signOut()
     .then(() => {
@@ -33,6 +33,16 @@ class DrawerContent extends Component{
     .catch((error) => {
       console.log('Signout error: ' + error.message);
     });
+=======
+  async userLogout() {
+    try {
+      await AsyncStorage.removeItem('id_token');
+      Alert.alert('Log Out Successfully!');
+      Actions.Authentication();
+    } catch (error) {
+      console.log('AsyncStorage error: ' + error.message);
+    }
+>>>>>>> parent of aa89d91... Copy of Final project
   }
   render() {
     return (

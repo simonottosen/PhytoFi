@@ -7,7 +7,6 @@ import ActionButton from './ActionButton';
 import ListItem from './ListItem';
 import styles from '../styles';
 const {
-  AsyncStorage,
   ListView,
   StyleSheet,
   TextInput,
@@ -22,16 +21,20 @@ class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD
       type: '',
+=======
+>>>>>>> parent of aa89d91... Copy of Final project
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       })
     };
-    this.itemsRef = this.getRef().child('offerings');
+    this.itemsRef = this.getRef().child('items');
   }
   getRef() {
     return firebase.database().ref();
   }
+<<<<<<< HEAD
   componentDidMount() {
     AsyncStorage.getItem('user').then((userString) => {
       let user = JSON.parse(userString);
@@ -40,11 +43,15 @@ class HomePage extends Component {
     });
   }
   listenForItems(itemsRef, type) {
+=======
+  listenForItems(itemsRef) {
+>>>>>>> parent of aa89d91... Copy of Final project
     itemsRef.on('value', (snap) => {
 
       // get children as an array
       var items = [];
       snap.forEach((child) => {
+<<<<<<< HEAD
         child.forEach((item) => {
           console.log(type+' '+item.val().type);
           if(type != item.val().type){
@@ -56,12 +63,25 @@ class HomePage extends Component {
               _key: item.key
             });
           }
+=======
+        items.push({
+          title: child.val().title,
+          _key: child.key
+>>>>>>> parent of aa89d91... Copy of Final project
         });
       });
+
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(items)
       });
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of aa89d91... Copy of Final project
     });
+  }
+  componentDidMount() {
+    this.listenForItems(this.itemsRef);
   }
   render() {
     return (
@@ -71,12 +91,13 @@ class HomePage extends Component {
           renderRow={this._renderItem.bind(this)}
           enableEmptySections={true}
           style={styles.listview}/>
-        {/* <TextInput
+        <TextInput
           style={{height: 40}}
           placeholder="Type here to add!"
           onChangeText={(text) => this.setState({text})}
         />
-        <ActionButton onPress={this._addItem.bind(this)} title="Add" /> */}
+        <ActionButton onPress={this._addItem.bind(this)} title="Add" />
+
       </KeyboardAvoidingView>
     )
   }
@@ -85,6 +106,7 @@ class HomePage extends Component {
   }
   _renderItem(item) {
     const onPress = () => {
+<<<<<<< HEAD
       Actions.PhotoPage({ title: item.title, item: item });
       // Alert.alert(
       //   'Delete: '+item.title+'?',
@@ -95,6 +117,17 @@ class HomePage extends Component {
       //   ],
       //   {cancelable: false}
       // );
+=======
+      Alert.alert(
+        'Delete: '+item.title+'?',
+        null,
+        [
+          {text: 'Yes', onPress: (text) => this.itemsRef.child(item._key).remove()},
+          {text: 'Cancel', onPress: (text) => console.log('Cancelled')}
+        ],
+        {cancelable: false}
+      );
+>>>>>>> parent of aa89d91... Copy of Final project
     };
 
     return (

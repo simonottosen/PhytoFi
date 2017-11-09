@@ -1,4 +1,11 @@
 {
+<<<<<<< HEAD
   "name": "CameraApp",
   "displayName": "CameraApp"
 }
+=======
+  "expo": {
+    "sdkVersion": "20.0.0"
+  }
+}
+>>>>>>> parent of aa89d91... Copy of Final project

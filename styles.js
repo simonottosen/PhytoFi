@@ -1,5 +1,5 @@
 const React = require('react-native')
-const {StyleSheet, Dimensions} = React
+const {StyleSheet} = React
 const constants = {
   actionColor: '#24CE84'
 };
@@ -10,12 +10,6 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     height: '100%',
     padding: 50
-  },
-  panelContrainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
   },
   listContainer: {
     backgroundColor: '#f2f2f2',
@@ -32,23 +26,12 @@ var styles = StyleSheet.create({
     paddingLeft: 16,
     paddingTop: 14,
     paddingBottom: 16,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
   },
   liContainer: {
     flex: 1,
   },
-  liImg: {
-    flex: 0,
-    width: 50,
-    height: 50
-  },
   liText: {
-    flex: 1,
     color: '#333',
-    textAlign: 'center',
     fontSize: 16,
   },
   navbar: {
@@ -136,6 +119,7 @@ var styles = StyleSheet.create({
   },
   drawerButton: {
     margin: 10
+<<<<<<< HEAD
   },
   preview: {
     flex: 1,
@@ -167,6 +151,8 @@ var styles = StyleSheet.create({
     borderRadius: 30,
     padding: 10,
     margin: 40
+=======
+>>>>>>> parent of aa89d91... Copy of Final project
   }
 })
 module.exports = styles
