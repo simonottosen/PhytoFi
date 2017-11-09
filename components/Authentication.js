@@ -30,7 +30,7 @@ class Authentication extends Component {
         AsyncStorage.setItem('id_token', idToken);
         console.log(idToken);
         Alert.alert( 'Sign In Successfully!', 'Click the button to go to Home Page!');
-        Actions.Tabbar();
+        Actions.HomePage();
       })
       .catch((err) => {
         this.setState({ error: 'Failed to obtain user ID token.'+err, loading: false });
@@ -45,7 +45,7 @@ class Authentication extends Component {
             AsyncStorage.setItem('id_token', idToken);
             console.log(idToken);
             Alert.alert( 'Sign Up Successfully!', 'Click the button to go to Home Page!');
-            Actions.Tabbar();
+            Actions.HomePage();
           })
           .catch(() => {
             this.setState({ error: 'Failed to obtain user ID token.', loading: false });
