@@ -8,7 +8,14 @@ class ListItem extends Component {
     return (
       <TouchableHighlight onPress={this.props.onPress}>
         <View style={styles.li}>
-          <Text style={styles.liText}>{this.props.item.title}</Text>
+          <Text style={styles.liText}>{this.props.item.name}</Text>
+          <Text style={styles.liText}>{this.props.item.weather}</Text>
+          <Text style={styles.liText}>{this.props.item.fertilizer}</Text>
+          <Text style={styles.liText}>{this.props.item.fertilizerRef}</Text>
+          <Text style={styles.liText}>{this.props.item.light}</Text>
+          <Text style={styles.liText}>{this.props.item.temperature}</Text>
+          <Text style={styles.liText}>{this.props.item.water}</Text>
+          <Text style={styles.liText}>{this.props.item.waterRef}</Text>
         </View>
       </TouchableHighlight>
     );

@@ -15,17 +15,52 @@ export default class HomePage extends Component {
     this.state = {
       isLoading: true,
       text: '',
+      reference: {}, 
       dataSource: new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2,}),
+      disSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,})
-
     };
     this.itemsRef = this.getRef().child('items');
-    
+    this.refRef = this.getRef().child('reference');
   }
   getRef() {
     return firebase.database().ref();
   }
   
+  listenForItems(that, itemsRef, refRef, weather) {
+    
+    itemsRef.on('value', (snap) => {
+      refRef.once('value', (refs) => {
+        refs.forEach((ref) => {
+          Alert.alert(weather);
+          that.setState({ reference: {
+            fertilizer: ref.val().fertilizer,
+            water: ref.val().water,
+            _key: ref.key
+          }});
+          // get children as an array
+          var items = [];
+          snap.forEach((item) => {
+            items.push({
+              name: item.val().name,
+              weather: weather,
+              fertilizer: item.val().fertilizer,
+              light: item.val().light,
+              water: item.val().water,
+              temperature: item.val().temperature,
+              fertilizerRef: ref.val().fertilizer,
+              waterRef: ref.val().water,
+              _key: item.key
+            });
+          });
+          that.setState({
+            disSource: that.state.disSource.cloneWithRows(items)
+          });
+        });
+      });
+    });
+  }
 
   componentDidMount(){
     if(this.state.text != '' && this.state.text != null){
@@ -34,8 +69,8 @@ export default class HomePage extends Component {
   }
 
   getWeather() {
-    
-    return fetch('http://api.openweathermap.org/data/2.5/weather?q='+this.state.text+'&APPID=f873241aae3dee39adf62042e70a44c9')
+    var that = this;
+    fetch('http://api.openweathermap.org/data/2.5/weather?q='+this.state.text+'&APPID=f873241aae3dee39adf62042e70a44c9')
       .then((response) => response.json())
       .then((responseJson) => {
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -45,11 +80,21 @@ export default class HomePage extends Component {
         }, function() {
           alert("By opdateret");
         });
+        that.listenForItems(that, that.itemsRef, that.refRef, responseJson.weather[0].main);
       })
       .catch((error) => {
         alert("Fejl");
       });
     
+  }
+
+  _renderItem(item) {
+    const onPress = () => {
+      Actions.PhotoPage({ title: item.title, item: item, uid: this.state.uid });
+    };
+    return (
+      <ListItem item={item} onPress={onPress} />
+    );
   }
 
   render() {
@@ -74,6 +119,10 @@ export default class HomePage extends Component {
           dataSource={this.state.dataSource}
           renderRow={(rowData) => <Text >The weather today is going to be {rowData.main}.</Text>}
           
+        />
+        <ListView
+          dataSource={this.state.disSource}
+          renderRow={this._renderItem.bind(this)}
         />
         <Image source={pic} style={{width: 920, height: 110}}/>
         <Button 
