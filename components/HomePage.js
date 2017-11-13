@@ -14,7 +14,7 @@ export default class HomePage extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      text: 'Copenhagen',
+      text: '',
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,})
 
@@ -28,8 +28,9 @@ export default class HomePage extends Component {
   
 
   componentDidMount(){
-    
+    if(this.state.text != '' && this.state.text != null){
     this.getWeather();
+     }
   }
 
   getWeather() {
@@ -62,8 +63,8 @@ export default class HomePage extends Component {
     return (
       <View style={{paddingTop: 50}}>
         <TextInput
-          style={{height: 40}}
-          placeholder= {this.state.text}
+          style={{height: 40, backgroundColor: '#FFFFFF'}}
+          placeholder= {"Indtast by"}
           onChangeText={(text) => this.setState({text})}
           
         />
@@ -71,12 +72,11 @@ export default class HomePage extends Component {
         
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Text>The weather today is going to be {rowData.main}.</Text>}
+          renderRow={(rowData) => <Text >The weather today is going to be {rowData.main}.</Text>}
           
         />
         <Image source={pic} style={{width: 193, height: 110}}/>
-
-        <Button
+        <Button 
           onPress={this.getWeather.bind(this)}
           title="Update"
           color="#841584"

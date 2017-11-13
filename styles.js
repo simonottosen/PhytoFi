@@ -109,6 +109,11 @@ var styles = StyleSheet.create({
   },
   alignRight: {
     flex: 1
+  },
+
+  boxView: {
+    paddingTop: 50,
+    backgroundColor: '#262626'
   }
 })
 module.exports = styles
