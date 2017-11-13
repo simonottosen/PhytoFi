@@ -54,7 +54,7 @@ export default class HomePage extends Component {
 
   render() {
     let pic = {
-      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+      uri: 'http://images5.fanpop.com/image/photos/29400000/White-writing-29491444-516-350.jpg'
     };
     
 
@@ -66,16 +66,16 @@ export default class HomePage extends Component {
           style={{height: 40, backgroundColor: '#FFFFFF'}}
           placeholder= {"Indtast by"}
           onChangeText={(text) => this.setState({text})}
-          
         />
 
-        
+        <Image source={pic} style={{width: 920, height: 110}}/>
+
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(rowData) => <Text >The weather today is going to be {rowData.main}.</Text>}
           
         />
-        <Image source={pic} style={{width: 193, height: 110}}/>
+        <Image source={pic} style={{width: 920, height: 110}}/>
         <Button 
           onPress={this.getWeather.bind(this)}
           title="Update"
