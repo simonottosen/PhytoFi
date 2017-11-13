@@ -33,7 +33,6 @@ export default class HomePage extends Component {
     itemsRef.on('value', (snap) => {
       refRef.once('value', (refs) => {
         refs.forEach((ref) => {
-          Alert.alert(weather);
           that.setState({ reference: {
             fertilizer: ref.val().fertilizer,
             water: ref.val().water,
@@ -78,7 +77,6 @@ export default class HomePage extends Component {
           isLoading: false,
           dataSource: ds.cloneWithRows(responseJson.weather),
         }, function() {
-          alert("By opdateret");
         });
         that.listenForItems(that, that.itemsRef, that.refRef, responseJson.weather[0].main);
       })

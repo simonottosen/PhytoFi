@@ -1,9 +1,21 @@
 import React, {Component} from 'react';
-import ReactNative from 'react-native';
+import ReactNative, { Alert } from 'react-native';
 const styles = require('../styles.js')
-const { View, TouchableHighlight, Text } = ReactNative;
+const { View, ListView, TouchableHighlight, Text } = ReactNative;
 
 class ListItem extends Component {
+  _renderCalc(){
+      if(this.props.item.water < this.props.item.waterRef && this.props.item.weather != 'Rain'){
+      return(
+        
+        <Text>Du skal vande</Text>
+      );
+    }else{
+      return(
+      <Text>Ikke vande</Text>);
+    }
+
+  }
   render() {
     return (
       <TouchableHighlight onPress={this.props.onPress}>
@@ -14,10 +26,14 @@ class ListItem extends Component {
           <Text style={styles.liText}>{this.props.item.fertilizerRef}</Text>
           <Text style={styles.liText}>{this.props.item.light}</Text>
           <Text style={styles.liText}>{this.props.item.temperature}</Text>
-          <Text style={styles.liText}>{this.props.item.water}</Text>
+          <Text style={styles.liText}>{this.props.item.water} - {this._renderCalc()}</Text>
           <Text style={styles.liText}>{this.props.item.waterRef}</Text>
+          <Text></Text>
         </View>
       </TouchableHighlight>
+
+     
+      
     );
   }
 }
