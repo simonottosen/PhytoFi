@@ -4,6 +4,7 @@ import {Router, Scene} from 'react-native-router-flux';
 import * as firebase from 'firebase';
 import Authentication from './components/Authentication';
 import HomePage from './components/HomePage';
+import PhotoPage from './components/PhotoPage';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAbDaMFCjAbSq105yNi8C3kVDrSOg2_6Jw",
@@ -50,6 +51,12 @@ export default class App extends Component {
               initial={this.state.hasToken}
               key='HomePage'
               title='Home Page'
+            />
+            <Scene
+              component={PhotoPage}
+              hideNavBar={true}
+              key='PhotoPage'
+              title='Photo Page'
             />
           </Scene>
         </Router>
