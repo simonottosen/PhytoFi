@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, Button, ListView, Text, View, Image, TextInput, TouchableHighlight, StyleSheet, AsyncStorage, Alert, KeyboardAvoidingView } from 'react-native';
+import { ActivityIndicator, ScrollView, Button, ListView, Text, View, Image, TextInput, TouchableHighlight, StyleSheet, AsyncStorage, Alert, KeyboardAvoidingView } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import * as firebase from 'firebase';
 import StatusBar from './StatusBar';
@@ -14,7 +14,8 @@ export default class HomePage extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      text: '',
+      text: 'London',
+      uid: '',
       reference: {}, 
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,}),
@@ -50,6 +51,7 @@ export default class HomePage extends Component {
               temperature: item.val().temperature,
               fertilizerRef: ref.val().fertilizer,
               waterRef: ref.val().water,
+              url: item.val().url,
               _key: item.key
             });
           });
@@ -88,7 +90,7 @@ export default class HomePage extends Component {
 
   _renderItem(item) {
     const onPress = () => {
-      Actions.PhotoPage({ title: item.title, item: item, uid: this.state.uid });
+      Actions.PhotoPage({ title: item.name, item: item, uid: this.state.uid });
     };
     return (
       <ListItem item={item} onPress={onPress} />
@@ -104,36 +106,37 @@ export default class HomePage extends Component {
 
     
     return (
-      <View style={{paddingTop: 50}}>
-        <TextInput
-          style={{height: 40, backgroundColor: '#FFFFFF'}}
+      <ScrollView style={styles.boxView}>
+        <TextInput 
+          style={{height: 40, backgroundColor: '#f2f2f2'}}
           placeholder= {"Indtast by"}
           onChangeText={(text) => this.setState({text})}
         />
+         <Button style={{backgroundColor:'#fff'}}
+          onPress={this.getWeather.bind(this)}
+          title="Update"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
 
-        <Image source={pic} style={{width: 920, height: 110}}/>
+        <Image source={pic} style={{width: 920, height: 50}}/>
 
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Text >The weather today is going to be {rowData.main}.</Text>}
+          renderRow={(rowData) => <Text style={{backgroundColor: '#fff'}} >The weather today is going to be {rowData.main}.</Text>}
           
         />
         <ListView
           dataSource={this.state.disSource}
           renderRow={this._renderItem.bind(this)}
         />
-        <Image source={pic} style={{width: 920, height: 110}}/>
-        <Button 
-          onPress={this.getWeather.bind(this)}
-          title="Update"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
+        <Image source={pic} style={{width: 920, height: 50}}/>
+       
         
         
        
 
-      </View>
+      </ScrollView>
 
   
 

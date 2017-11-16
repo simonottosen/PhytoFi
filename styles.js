@@ -15,6 +15,12 @@ var styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     flex: 1
   },
+  liImg: {
+    flex: 0,
+    width: 150,
+    height: 150
+  },
+
   listview: {
     flex: 1,
   },
@@ -113,7 +119,7 @@ var styles = StyleSheet.create({
 
   boxView: {
     paddingTop: 50,
-    backgroundColor: '#262626'
+    backgroundColor: '#fff'
   }
 })
 module.exports = styles
