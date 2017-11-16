@@ -106,21 +106,30 @@ export default class HomePage extends Component {
 
     
     return (
+
+<View style={{flex: 1}}>
+  
+<View style={{paddingTop:50}}>
+
+<TextInput 
+    returnKeyLabel='Go' 
+    returnKeyType='go' 
+    onSubmitEditing={this.getWeather.bind(this)}
+    style={{height: 40, backgroundColor: '#f2f2f2'}}
+    placeholder= {"Indtast by"}
+    onChangeText={(text) => this.setState({text})}
+/>
+<Button style={{backgroundColor:'#fff'}}
+ onPress={this.getWeather.bind(this)}
+  title="Update"
+  color="#841584"
+  accessibilityLabel="Learn more about this purple button"
+/></View>
+
+
+
       <ScrollView style={styles.boxView}>
-        <TextInput 
-          returnKeyLabel='Go' 
-          returnKeyType='go' 
-          onSubmitEditing={this.getWeather.bind(this)}
-          style={{height: 40, backgroundColor: '#f2f2f2'}}
-          placeholder= {"Indtast by"}
-          onChangeText={(text) => this.setState({text})}
-        />
-         <Button style={{backgroundColor:'#fff'}}
-          onPress={this.getWeather.bind(this)}
-          title="Update"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
+        
 
         <Image source={pic} style={{width: 920, height: 50}}/>
 
@@ -141,7 +150,7 @@ export default class HomePage extends Component {
 
       </ScrollView>
 
-  
+      </View>
 
 
     );
