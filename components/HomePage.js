@@ -108,6 +108,9 @@ export default class HomePage extends Component {
     return (
       <ScrollView style={styles.boxView}>
         <TextInput 
+          returnKeyLabel='Go' 
+          returnKeyType='go' 
+          onSubmitEditing={this.getWeather.bind(this)}
           style={{height: 40, backgroundColor: '#f2f2f2'}}
           placeholder= {"Indtast by"}
           onChangeText={(text) => this.setState({text})}
@@ -123,7 +126,7 @@ export default class HomePage extends Component {
 
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Text style={{backgroundColor: '#fff'}} >The weather today is going to be {rowData.main}.</Text>}
+          renderRow={(rowData) => <Text style={{backgroundColor: '#fff'}} >The weather in 6 hours will be {rowData.main}.</Text>}
           
         />
         <ListView
