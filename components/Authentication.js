@@ -18,19 +18,22 @@ const {
 class Authentication extends Component {
   constructor() {
     super();
-    this.state = { username: '', password: '', loading: false, error: '' };
+    this.state = { username: '', password: '', city: '', uid: '', loading: false, error: '' };
+    this.profRef = firebase.database().ref().child('profile');
   }
+  
   userAuth() {
+    var that = this; 
     this.setState({ error: '', loading: true });
-    const { username, password } = this.state;
+    const { username, password, city } = this.state;
     firebase.auth().signInWithEmailAndPassword(username, password)
     .then(() => {
       this.setState({ error: '', loading: false });
-      firebase.auth().currentUser.getIdToken().then(function(idToken) {
+      var currentUser = firebase.auth().currentUser;
+      currentUser.getIdToken().then(function(idToken) {
+        that.setState({uid: currentUser.uid});
         AsyncStorage.setItem('id_token', idToken);
-        console.log(idToken);
-        Alert.alert( 'Sign In Successfully!', 'Click the button to go to Home Page!');
-        Actions.HomePage();
+        that.updateProfile(that);
       })
       .catch((err) => {
         this.setState({ error: 'Failed to obtain user ID token.'+err, loading: false });
@@ -39,22 +42,56 @@ class Authentication extends Component {
     .catch((err) => {
         //Login was not successful, let's create a new account
         firebase.auth().createUserWithEmailAndPassword(username, password)
-        .then(() => { 
+        .then(() => {
+          var currentUser = firebase.auth().currentUser;
           this.setState({ error: '', loading: false });
           firebase.auth().currentUser.getIdToken().then(function(idToken) {
+            that.setState({uid: currentUser.uid});
             AsyncStorage.setItem('id_token', idToken);
-            console.log(idToken);
-            Alert.alert( 'Sign Up Successfully!', 'Click the button to go to Home Page!');
-            Actions.HomePage();
+            that.updateProfile(that);
           })
           .catch(() => {
-            this.setState({ error: 'Failed to obtain user ID token.', loading: false });
+            this.setState({ error: 'Failed to obtain user ID token.'+err, loading: false });
           });
         })
         .catch((err) => {
             this.setState({ error: 'Authentication failed. '+err, loading: false });
         });
+        
     });
+  }
+  updateProfile(that) {
+    that.setState({ loading: true });
+    var data = {
+      city: that.state.city
+    };
+    that.profRef.child(that.state.uid).once('value', function(snapshot) {
+      if(snapshot.val() === null){
+        if(that.state.city == ''){
+          data.city == 'Copenhagen';
+        }
+        that.profRef.child(that.state.uid).set(data);
+        that.setState({ loading: false });
+      }else{
+        if(that.state.city != ''){
+          that.profRef.child(that.state.uid).update(data)
+          .then(() => {
+            that.setState({ loading: false });
+          })
+          .catch((err) => {
+            console.log(err);
+            that.setState({
+              loading: false
+            });
+          });
+        }else{
+          data.city = snapshot.val().city;
+        }
+      }
+      Alert.alert( 'Sign In Successfully!', 'Click the button to go to Home Page!');
+      Actions.HomePage({city: data.city});
+    })
+    .catch(err => console.error(err));
   }
   renderButtonOrSpinner() {
     if (this.state.loading) {
@@ -63,42 +100,21 @@ class Authentication extends Component {
     return <Button onPress={this.userAuth.bind(this)} title="Log in/Sign up" />;
   }
   render() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
   //    let pics = {
   //      uri: './logo.png'
   //    };
-=======
->>>>>>> 8fd493cbd2b09682859f1c600be6de4b47250486
->>>>>>> 36dea700c53d24e4798d52e842436f455d5f4a6e
   
-=======
->>>>>>> parent of 06df4e7... Albert Magic 3
     return (
       <KeyboardAvoidingView style={styles.container} behavior='padding'>
-<<<<<<< HEAD
-            
-            <Image style={{justifyContent: 'center',
-           alignItems: 'center',
-            width: 286, height: 160}}
-            source={require('./LogoTrans.png')}
-          />
-=======
-    return (
-      <KeyboardAvoidingView style={styles.container} behavior='padding'>
-        <Text style={styles.title}>Welcome</Text>
->>>>>>> parent of 06df4e7... Albert Magic 3
-=======
-        <Text style={styles.title}>Welcome</Text>
->>>>>>> 36dea700c53d24e4798d52e842436f455d5f4a6e
+        
+
+        <Text style={styles.title}>Welcome to PhytoFi</Text>
 
         <View style={styles.form}>
           <TitledInput
             label='Email Address'
             onChangeText={(username) => this.setState({username})}
-            placeholder='Email'
+            placeholder='Username'
             value={this.state.username}
           />
 
@@ -109,6 +125,14 @@ class Authentication extends Component {
             secureTextEntry
             value={this.state.password}
           />
+
+          <TitledInput
+            label='City'
+            onChangeText={(city) => this.setState({city})}
+            placeholder='City'
+            value={this.state.city}
+          />
+
           <Text style={styles.errorTextStyle}>{this.state.error}</Text>
           {this.renderButtonOrSpinner()}
         </View>
