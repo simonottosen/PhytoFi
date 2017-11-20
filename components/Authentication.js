@@ -101,9 +101,6 @@ class Authentication extends Component {
     return <Button onPress={this.userAuth.bind(this)} title="Log in/Sign up" />;
   }
   render() {
-    let pics = {
-   uri: './logo.png'
-    };
   
     return (
       <KeyboardAvoidingView style={styles.container} behavior='padding'>
@@ -118,7 +115,7 @@ class Authentication extends Component {
           <TitledInput
             label='Email Address'
             onChangeText={(username) => this.setState({username})}
-            placeholder='Username'
+            placeholder='Email'
             value={this.state.username}
           />
 
