@@ -14,7 +14,7 @@ export default class HomePage extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      text: 'London',
+      text: props.city,
       uid: '',
       reference: {}, 
       dataSource: new ListView.DataSource({
@@ -65,8 +65,8 @@ export default class HomePage extends Component {
 
   componentDidMount(){
     if(this.state.text != '' && this.state.text != null){
-    this.getWeather();
-     }
+      this.getWeather();
+    }
   }
 
   getWeather() {
