@@ -24,6 +24,8 @@ export default class HomePage extends Component {
     };
     this.itemsRef = this.getRef().child('items');
     this.refRef = this.getRef().child('reference');
+
+    
   }
   getRef() {
     return firebase.database().ref();
@@ -97,6 +99,20 @@ export default class HomePage extends Component {
     );
   }
 
+  userLogout() {
+    AsyncStorage.removeItem('user').then(() => {
+      firebase.auth().signOut()
+      .then(() => {
+        Alert.alert('Log Out Successfully!');
+        Actions.Authentication();
+      })
+      .catch((error) => {
+        console.log('Signout error: ' + error.message);
+      });
+    });
+  }
+  
+
   render() {
     let pic = {
       uri: 'http://images5.fanpop.com/image/photos/29400000/White-writing-29491444-516-350.jpg'
@@ -124,7 +140,12 @@ export default class HomePage extends Component {
   title="Update"
   color="#841584"
   accessibilityLabel="Learn more about this purple button"
-/></View>
+/>
+<Button onPress={this.userLogout.bind(this)} title="Log Out" />
+
+
+
+</View>
 
 
 
@@ -149,7 +170,7 @@ export default class HomePage extends Component {
        
 
       </ScrollView>
-
+      
       </View>
 
 
