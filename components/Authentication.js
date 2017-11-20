@@ -12,7 +12,6 @@ const {
   TextInput,
   Text,
   View,
-  Image,
   KeyboardAvoidingView
 } = ReactNative;
 
@@ -65,9 +64,21 @@ class Authentication extends Component {
   }
   render() {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  //    let pics = {
+  //      uri: './logo.png'
+  //    };
+=======
+>>>>>>> 8fd493cbd2b09682859f1c600be6de4b47250486
+>>>>>>> 36dea700c53d24e4798d52e842436f455d5f4a6e
   
+=======
+>>>>>>> parent of 06df4e7... Albert Magic 3
     return (
       <KeyboardAvoidingView style={styles.container} behavior='padding'>
+<<<<<<< HEAD
             
             <Image style={{justifyContent: 'center',
            alignItems: 'center',
@@ -79,6 +90,9 @@ class Authentication extends Component {
       <KeyboardAvoidingView style={styles.container} behavior='padding'>
         <Text style={styles.title}>Welcome</Text>
 >>>>>>> parent of 06df4e7... Albert Magic 3
+=======
+        <Text style={styles.title}>Welcome</Text>
+>>>>>>> 36dea700c53d24e4798d52e842436f455d5f4a6e
 
         <View style={styles.form}>
           <TitledInput
