@@ -118,7 +118,7 @@ var styles = StyleSheet.create({
   },
 
   boxView: {
-    paddingTop: 50,
+   
     backgroundColor: '#fff'
   }
 })
