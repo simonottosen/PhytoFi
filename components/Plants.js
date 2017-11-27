@@ -85,8 +85,10 @@ class Plants extends Component {
 
 </View>
 
-      <ScrollView style={{paddingTop:10,  padding: 50,  margin: 10}}>
+      <ScrollView style={{paddingTop:1,  padding: 50,  margin: 5}}>
       <Text style={styles.title}>{this.props.item.name}</Text>
+      <Text style={{fontStyle: 'italic', fontSize: 11}}>{"\n"}We're measuring the {this.props.item.name} on a scale from 1 to 10, and compare the number to the reference on the perfect conditions for the plant.</Text>
+
 
       <Image 
             style={styles.liImg}
