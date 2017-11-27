@@ -21,14 +21,28 @@ class Plants extends Component {
     super(props);
     this.state = {};
   }
+
   _renderCalc(){
     if(this.props.item.water < this.props.item.waterRef && this.props.item.weather != 'Rain'){
+    return(
+      
+      <Text>Water</Text>
+    );
+  }else{
+    return(
+    <Text>Dont water</Text>);
+    
+  }
+
+}
+  _renderBar(){
+    if(this.props.item.water < this.props.item.waterRef ){
       return(
-        <Text>Water</Text>
+        <Progress.Bar progress={this.props.item.water / 10} width={200} size={50} height={50} margin={5} color={'red'} />
       );
     }else{
       return(
-      <Text>Dont water</Text>);
+        <Progress.Bar progress={this.props.item.water / 10} width={200} size={50} height={50} margin={5} color={'blue'} />);
     }
   }
   _onPress(){
@@ -46,8 +60,8 @@ class Plants extends Component {
         <Text style={styles.liText}>{this.props.item.waterRef}{"\n"}</Text>
 
         <Text style={{fontWeight: 'bold', fontSize: 20}}> Waterlevel </Text>
-        <Progress.Bar progress={this.props.item.water / 10} width={200} size={50} height={50} margin={5} color={'red'} />
-        
+        {/* <Progress.Bar progress={this.props.item.water / 10} width={200} size={50} height={50} margin={5} color={'blue'} />); */}
+        {this._renderBar()}
         <Button
           onPress={this._onPress.bind(this)}
           title='Back'/>
