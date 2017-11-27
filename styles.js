@@ -53,6 +53,14 @@ image: {
 
 },
 
+imageInfo:{
+  width: 35, height: 35, marginLeft: 0, marginTop: 17,
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 1 },
+  shadowOpacity: 0.2,
+  shadowRadius: 2,
+},
+
 
   li: {
     backgroundColor: '#fff',

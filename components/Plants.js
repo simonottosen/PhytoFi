@@ -39,7 +39,7 @@ class Plants extends Component {
 
 }
   _renderBar(){
-    if(this.props.item.water < this.props.item.waterRef ){
+    if(this.props.item.water < this.props.item.waterRef && this.props.item.weather != 'Rain'){
       return(
         <Progress.Bar progress={this.props.item.water / 10} width={200} size={50} height={50} margin={5} color={'red'} />
       );

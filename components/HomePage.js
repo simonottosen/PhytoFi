@@ -16,7 +16,7 @@ export default class HomePage extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      text: "Frederiksberg",
+      text: "Porto",
       //      text: props.city,
       uid: '',
       weather:'',
@@ -155,6 +155,18 @@ export default class HomePage extends Component {
     );
   }
 
+  _renderIconInfo(){
+    return(
+        <TouchableOpacity onPress={() => {Alert.alert("Info", "We're measuring the plant on a scale from 1 to 10, and compare the number to the reference on the perfect conditions for the plant." )}} rejectResponderTermination>
+          <Image style={styles.imageInfo}
+            source={require('./info.png')}
+          /> 
+
+        </TouchableOpacity>
+
+    );
+  }
+
 
   render() {
     return (
@@ -162,12 +174,12 @@ export default class HomePage extends Component {
 <View style={{flex: 1}}>
   
 
-<View style={{paddingTop:20, paddingLeft:115,   flexDirection: 'row',
+<View style={{paddingTop:20, paddingLeft:0,   flexDirection: 'row',
   flexWrap: 'wrap'
 }}>
 
-
-<Image style={{justifyContent: 'center',
+<View style={{paddingLeft:7,}}>{this._renderIconInfo()}</View>
+<Image style={{justifyContent: 'center', marginLeft:80,
         alignItems: 'center',
          width: 143, height: 80,  paddingRight: 50}}
          source={require('./LogoTrans.png')}
@@ -176,6 +188,7 @@ export default class HomePage extends Component {
 
 
 {this._renderIconWeather()}
+
 
 
 
