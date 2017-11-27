@@ -133,9 +133,16 @@ export default class HomePage extends Component {
 
 <View style={{flex: 1}}>
   
-<View style={{paddingTop:5}}>
 
-<TextInput 
+<View style={{paddingTop:20, paddingLeft:115}}>
+
+<Image style={{justifyContent: 'center',
+        alignItems: 'center',
+         width: 143, height: 80,  paddingRight: 50}}
+         source={require('./LogoTrans.png')}
+       /> 
+
+{/* <TextInput 
     returnKeyLabel='Go' 
     returnKeyType='go' 
     onSubmitEditing={this.getWeather.bind(this)}
@@ -148,7 +155,7 @@ export default class HomePage extends Component {
   title="Update"
   color="#841584"
   accessibilityLabel="Learn more about this purple button"
-/>
+/> */}
 
 
 
@@ -160,11 +167,11 @@ export default class HomePage extends Component {
         
 
 
-        <ListView
+        {/* <ListView 
           dataSource={this.state.dataSource}
           renderRow={(rowData) => <Text style={{backgroundColor: '#fff'}} >The weather in  {this.state.text} 6 hours will be {rowData.main}.</Text>}
-          
-        />
+        /> */}
+
         <ListView style={styles.container}
           dataSource={this.state.disSource}
           renderRow={this._renderItem.bind(this)}

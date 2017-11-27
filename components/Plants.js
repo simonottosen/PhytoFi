@@ -13,6 +13,8 @@ const {
   Text,
   View,
   KeyboardAvoidingView,
+  ScrollView,
+  ListView,
   TouchableHighlight
 } = ReactNative;
 
@@ -50,12 +52,44 @@ class Plants extends Component {
   }
   render() {
     return (
-      <View style={{paddingTop:50,  padding: 40,  margin: 10, justifyContent: 'center', alignItems: 'center' }}>
+
+
+<View style={{flex: 1}}>
+  
+
+<View style={{paddingTop:20, paddingLeft:115}}>
+
+<Image style={{justifyContent: 'center',
+        alignItems: 'center',
+         width: 143, height: 80,  paddingRight: 50}}
+         source={require('./LogoTrans.png')}
+       /> 
+
+{/* <TextInput 
+    returnKeyLabel='Go' 
+    returnKeyType='go' 
+    onSubmitEditing={this.getWeather.bind(this)}
+    style={{height: 40, backgroundColor: '#f2f2f2'}}
+    placeholder= {"Indtast by"}
+    onChangeText={(text) => this.setState({text})}
+/>
+<Button style={{backgroundColor:'#fff'}}
+ onPress={this.getWeather.bind(this)}
+  title="Update"
+  color="#841584"
+  accessibilityLabel="Learn more about this purple button"
+/> */}
+
+
+
+</View>
+
+      <ScrollView style={{paddingTop:50,  padding: 50,  margin: 10}}>
       <Image 
             style={styles.liImg}
             source={{uri: this.props.item.url}}
           />
-        <Text style={styles.liText}> Temperaturen på denne plante er {this.props.item.temperature} på en skala fra 0 til 10.</Text>
+        <Text style={styles.liText}>{"\n"}Temperaturen på denne plante er {this.props.item.temperature} på en skala fra 0 til 10.</Text>
         <Text style={styles.liText}>{this.props.item.water} - {this._renderCalc()}</Text>
         <Text style={styles.liText}>{this.props.item.waterRef}{"\n"}</Text>
 
@@ -65,6 +99,8 @@ class Plants extends Component {
         <Button
           onPress={this._onPress.bind(this)}
           title='Back'/>
+      </ScrollView>
+
       </View>
     );
   }
