@@ -120,6 +120,16 @@ var styles = StyleSheet.create({
   boxView: {
    
     backgroundColor: '#fff'
+  }, 
+  drawer: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    height: '100%',
+    padding: 20
+  },
+  drawerButton: {
+    margin: 10
   }
 })
 module.exports = styles
