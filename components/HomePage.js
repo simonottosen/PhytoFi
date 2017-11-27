@@ -123,7 +123,7 @@ export default class HomePage extends Component {
   _renderIconWeather() {
     if(this.state.weather == 'Clear'){
       return(
-        <TouchableOpacity onPress={() => {alert('Clear')}} rejectResponderTermination>
+        <TouchableOpacity onPress={() => {Alert.alert("The weather in 6 hours in " + this.state.text, "All clear and sunny!")}} rejectResponderTermination>
         <Image style={styles.image}
           source={require('./sunny.png')}
         /> 
@@ -133,19 +133,20 @@ export default class HomePage extends Component {
     }
     else if(this.state.weather == 'Rain'){
       return(
-        <TouchableOpacity onPress={() => {alert('Rain')}} rejectResponderTermination>
+        <TouchableOpacity onPress={() => {Alert.alert("The weather in 6 hours in " + this.state.text, "It's going to rain!", )}} rejectResponderTermination>
           <Image style={styles.image}
             source={require('./rain.png')}
           /> 
 
         </TouchableOpacity>
         
+
       
       );
     }
     else
     return(
-      <TouchableOpacity onPress={() => {alert('Clouds')}} rejectResponderTermination>
+      <TouchableOpacity onPress={() => {Alert.alert("The weather in 6 hours in " + this.state.text, "It's a bit cloudy, but not rainy.")}} rejectResponderTermination>
       <Image style={styles.image}
         source={require('./cloud.png')}
       /> 
