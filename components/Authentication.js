@@ -108,7 +108,11 @@ class Authentication extends Component {
       <KeyboardAvoidingView style={styles.container} behavior='padding'>
         
 
-        <Text style={styles.title}>Welcome to PhytoFi</Text>
+        {/* <Image style={{justifyContent: 'center',
+        alignItems: 'center',
+         width: 286, height: 160}}
+         source={require('./LogoTrans.png')}
+       /> */}
 
         <View style={styles.form}>
           <TitledInput
