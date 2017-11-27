@@ -7,9 +7,11 @@ const constants = {
 var styles = StyleSheet.create({
   container: {
     backgroundColor: '#f2f2f2',
-    justifyContent: 'center',
     height: '100%',
-    padding: 50
+    padding: 50,
+    borderRadius: 4,
+    borderWidth: 0.5,
+    borderColor: '#d6d7da'
   },
   listContainer: {
     backgroundColor: '#f2f2f2',
@@ -20,8 +22,9 @@ var styles = StyleSheet.create({
     width: 150,
     height: 150,
     borderRadius: 10,
-    margin: 50
-
+    margin: 10,
+    marginLeft: 50,
+    justifyContent: 'center'
   },
 
 circles: {
@@ -94,12 +97,11 @@ progress: {
   },
   title: {
     color: '#444',
-    fontSize: 26,
+    fontSize: 32,
     fontWeight: "500",
     textAlign: 'center',
     alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20
+    justifyContent: 'center'
   },
   inputStyle: {
     paddingRight: 5,
