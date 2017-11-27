@@ -6,6 +6,9 @@ import Authentication from './components/Authentication';
 import HomePage from './components/HomePage';
 import Plants from './components/Plants';
 
+
+console.disableYellowBox = true;
+
 const firebaseConfig = {
   apiKey: "AIzaSyAbDaMFCjAbSq105yNi8C3kVDrSOg2_6Jw",
   authDomain: "phytofi.firebaseapp.com",
