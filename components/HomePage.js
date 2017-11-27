@@ -170,7 +170,7 @@ export default class HomePage extends Component {
 
 <Image style={{justifyContent: 'center',
         alignItems: 'center',
-         width: 143, height: 80,  paddingRight: 50}}
+         width: 143, height: 80,  paddingRight: 50, }}
          source={require('./LogoTrans.png')}
        /> 
        
