@@ -11,7 +11,11 @@ var styles = StyleSheet.create({
     padding: 50,
     borderRadius: 4,
     borderWidth: 0.5,
-    borderColor: '#d6d7da'
+    borderColor: '#d6d7da',
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: '#d6d7da',
+
   },
   listContainer: {
     backgroundColor: '#f2f2f2',
@@ -52,12 +56,15 @@ image: {
 
   li: {
     backgroundColor: '#fff',
-    borderBottomColor: '#eee',
-    borderColor: 'transparent',
-    borderWidth: 1,
     paddingLeft: 16,
     paddingTop: 14,
-    paddingBottom: 16,
+    paddingBottom: 50,
+    marginBottom: 20,
+      shadowColor: '#000',
+  shadowOffset: { width: 0, height: 1 },
+  shadowOpacity: 0.2,
+  shadowRadius: 2,
+
   },
   liContainer: {
     flex: 2,
