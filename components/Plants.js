@@ -5,6 +5,7 @@ import * as firebase from 'firebase';
 import styles from '../styles';
 import * as Progress from 'react-native-progress';
 
+
 const {
   ActivityIndicator,
   Alert,

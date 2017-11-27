@@ -7,7 +7,7 @@ import HomePage from './components/HomePage';
 import Plants from './components/Plants';
 
 
-console.disableYellowBox = true;
+// console.disableYellowBox = true;
 
 const firebaseConfig = {
   apiKey: "AIzaSyAbDaMFCjAbSq105yNi8C3kVDrSOg2_6Jw",

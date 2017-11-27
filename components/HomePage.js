@@ -19,6 +19,7 @@ export default class HomePage extends Component {
       text: "Porto",
       //      text: props.city,
       uid: '',
+      weather:'',
       reference: {}, 
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,}),
@@ -97,9 +98,12 @@ export default class HomePage extends Component {
         this.setState({
           isLoading: false,
           dataSource: ds.cloneWithRows(responseJson.weather),
+          weather: responseJson.weather[0].main,
         }, function() {
         });
         that.listenForItems(that, that.itemsRef, that.refRef, responseJson.weather[0].main);
+        
+        
       })
       .catch((error) => {
         alert("Fejl");
@@ -128,6 +132,29 @@ export default class HomePage extends Component {
       });
     });
   }
+
+  _renderIconWeather() {
+    if(this.state.weather == 'Clear'){
+      return(
+        <Image style={styles.image}
+        source={require('./sunny.png')}
+      /> 
+      );
+    }
+    else if(this.state.weather == 'Rain'){
+      return(
+        <Image style={styles.image}
+        source={require('./rain.png')}
+      /> 
+      );
+    }
+    else
+    return(
+      <Image style={styles.image}
+      source={require('./cloud.png')}
+    /> 
+    );
+  }
   
 
   render() {
@@ -147,9 +174,11 @@ export default class HomePage extends Component {
          source={require('./LogoTrans.png')}
        /> 
        
-       <Image style={styles.image}
-         source={require('./rain.png')}
-       /> 
+{/* <Image style={styles.image}
+  source={require('./rain.png')}
+/>  */}
+
+{this._renderIconWeather()}
 
 
 
