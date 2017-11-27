@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, ScrollView, Button, ListView, Text, View, Image, TextInput, TouchableHighlight, StyleSheet, AsyncStorage, Alert, KeyboardAvoidingView } from 'react-native';
+import { ActivityIndicator, ScrollView, Button, ListView, Text, View, Image, TouchableOpacity, TextInput, TouchableHighlight, StyleSheet, AsyncStorage, Alert, KeyboardAvoidingView } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import * as firebase from 'firebase';
 import ActionButton from './ActionButton';
@@ -16,7 +16,7 @@ export default class HomePage extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      text: "Porto",
+      text: "Frederiksberg",
       //      text: props.city,
       uid: '',
       weather:'',
@@ -74,20 +74,7 @@ export default class HomePage extends Component {
       this.getWeather();
     }
   }
-  animate() {
-    let progress = 0;
-    this.setState({ progress });
-    setTimeout(() => {
-      this.setState({ indeterminate: false });
-      setInterval(() => {
-        progress += Math.random() / 5;
-        if (progress > 1) {
-          progress = 1;
-        }
-        this.setState({ progress });
-      }, 500);
-    }, 1500);
-  }
+
 
   getWeather() {
     var that = this;
@@ -136,26 +123,37 @@ export default class HomePage extends Component {
   _renderIconWeather() {
     if(this.state.weather == 'Clear'){
       return(
+        <TouchableOpacity onPress={() => {alert('Clear')}} rejectResponderTermination>
         <Image style={styles.image}
-        source={require('./sunny.png')}
-      /> 
+          source={require('./sunny.png')}
+        /> 
+
+      </TouchableOpacity>
       );
     }
     else if(this.state.weather == 'Rain'){
       return(
-        <Image style={styles.image}
-        source={require('./rain.png')}
-      /> 
+        <TouchableOpacity onPress={() => {alert('Rain')}} rejectResponderTermination>
+          <Image style={styles.image}
+            source={require('./rain.png')}
+          /> 
+
+        </TouchableOpacity>
+        
+      
       );
     }
     else
     return(
+      <TouchableOpacity onPress={() => {alert('Clouds')}} rejectResponderTermination>
       <Image style={styles.image}
-      source={require('./cloud.png')}
-    /> 
+        source={require('./cloud.png')}
+      /> 
+
+    </TouchableOpacity>
     );
   }
-  
+
 
   render() {
     return (
@@ -170,13 +168,11 @@ export default class HomePage extends Component {
 
 <Image style={{justifyContent: 'center',
         alignItems: 'center',
-         width: 143, height: 80,  paddingRight: 50, }}
+         width: 143, height: 80,  paddingRight: 50}}
          source={require('./LogoTrans.png')}
        /> 
        
-{/* <Image style={styles.image}
-  source={require('./rain.png')}
-/>  */}
+
 
 {this._renderIconWeather()}
 
