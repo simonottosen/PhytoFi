@@ -16,7 +16,7 @@ export default class HomePage extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      text: "Frederiksberg",
+      text: "Ohio",
       //      text: props.city,
       uid: '',
       weather:'',
@@ -127,7 +127,6 @@ export default class HomePage extends Component {
         <Image style={styles.image}
           source={require('./sunny.png')}
         /> 
-
       </TouchableOpacity>
       );
     }
@@ -137,11 +136,7 @@ export default class HomePage extends Component {
           <Image style={styles.image}
             source={require('./rain.png')}
           /> 
-
         </TouchableOpacity>
-        
-
-      
       );
     }
     else
@@ -150,7 +145,6 @@ export default class HomePage extends Component {
       <Image style={styles.image}
         source={require('./cloud.png')}
       /> 
-
     </TouchableOpacity>
     );
   }
@@ -169,14 +163,13 @@ export default class HomePage extends Component {
 
 <Image style={{justifyContent: 'center',
         alignItems: 'center',
-         width: 143, height: 80,  paddingRight: 50}}
+         width: 143, height: 80,  paddingRight: 50,  paddingLeft:115,}}
          source={require('./LogoTrans.png')}
        /> 
        
 
 
 {this._renderIconWeather()}
-
 
 
 
