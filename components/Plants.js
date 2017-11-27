@@ -84,7 +84,9 @@ class Plants extends Component {
 
 </View>
 
-      <ScrollView style={{paddingTop:50,  padding: 50,  margin: 10}}>
+      <ScrollView style={{paddingTop:10,  padding: 50,  margin: 10}}>
+      <Text style={styles.title}>{this.props.item.name}</Text>
+
       <Image 
             style={styles.liImg}
             source={{uri: this.props.item.url}}
