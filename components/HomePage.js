@@ -141,7 +141,6 @@ export default class HomePage extends Component {
   color="#841584"
   accessibilityLabel="Learn more about this purple button"
 />
-<Button onPress={this.userLogout.bind(this)} title="Log Out" />
 
 
 
@@ -170,7 +169,8 @@ export default class HomePage extends Component {
        
 
       </ScrollView>
-      
+      <Button onPress={this.userLogout.bind(this)} title="Log Out" />
+
       </View>
 
 

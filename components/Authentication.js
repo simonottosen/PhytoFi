@@ -11,6 +11,7 @@ const {
   StyleSheet,
   TextInput,
   Text,
+  Image,
   View,
   KeyboardAvoidingView
 } = ReactNative;
@@ -100,19 +101,16 @@ class Authentication extends Component {
     return <Button onPress={this.userAuth.bind(this)} title="Log in/Sign up" />;
   }
   render() {
-  //    let pics = {
-  //      uri: './logo.png'
-  //    };
   
     return (
       <KeyboardAvoidingView style={styles.container} behavior='padding'>
         
 
-        {/* <Image style={{justifyContent: 'center',
+         <Image style={{justifyContent: 'center',
         alignItems: 'center',
          width: 286, height: 160}}
          source={require('./LogoTrans.png')}
-       /> */}
+       /> 
 
         <View style={styles.form}>
           <TitledInput
