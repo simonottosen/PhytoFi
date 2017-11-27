@@ -6,6 +6,8 @@ import ActionButton from './ActionButton';
 import ListItem from './ListItem';
 import styles from '../styles';
 import * as Progress from 'react-native-progress';
+import SVGImage from 'react-native-svg-image';
+
 
 
 
@@ -134,13 +136,26 @@ export default class HomePage extends Component {
 <View style={{flex: 1}}>
   
 
-<View style={{paddingTop:20, paddingLeft:115}}>
+<View style={{paddingTop:20, paddingLeft:115,   flexDirection: 'row',
+  flexWrap: 'wrap'
+}}>
+
 
 <Image style={{justifyContent: 'center',
         alignItems: 'center',
          width: 143, height: 80,  paddingRight: 50}}
          source={require('./LogoTrans.png')}
        /> 
+       
+       <Image style={styles.image}
+         source={require('./rain.png')}
+       /> 
+
+
+
+
+
+
 
 {/* <TextInput 
     returnKeyLabel='Go' 
@@ -178,7 +193,7 @@ export default class HomePage extends Component {
 
         />
        
-        
+
         
        
 
