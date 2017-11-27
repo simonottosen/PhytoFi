@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { ActivityIndicator, ScrollView, Button, ListView, Text, View, Image, TextInput, TouchableHighlight, StyleSheet, AsyncStorage, Alert, KeyboardAvoidingView } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import * as firebase from 'firebase';
-import StatusBar from './StatusBar';
 import ActionButton from './ActionButton';
 import ListItem from './ListItem';
 import styles from '../styles';
@@ -14,7 +13,8 @@ export default class HomePage extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      text: props.city,
+      text: "Porto",
+      //      text: props.city,
       uid: '',
       reference: {}, 
       dataSource: new ListView.DataSource({
@@ -92,7 +92,7 @@ export default class HomePage extends Component {
 
   _renderItem(item) {
     const onPress = () => {
-      Actions.PhotoPage({ title: item.name, item: item, uid: this.state.uid });
+      Actions.Plants({ title: item.name, item: item, uid: this.state.uid });
     };
     return (
       <ListItem item={item} onPress={onPress} />
@@ -114,13 +114,6 @@ export default class HomePage extends Component {
   
 
   render() {
-    let pic = {
-      uri: 'http://images5.fanpop.com/image/photos/29400000/White-writing-29491444-516-350.jpg'
-    };
-    
-
-
-    
     return (
 
 <View style={{flex: 1}}>
@@ -151,7 +144,6 @@ export default class HomePage extends Component {
       <ScrollView style={styles.boxView}>
         
 
-        <Image source={pic} style={{width: 920, height: 50}}/>
 
         <ListView
           dataSource={this.state.dataSource}
@@ -162,7 +154,6 @@ export default class HomePage extends Component {
           dataSource={this.state.disSource}
           renderRow={this._renderItem.bind(this)}
         />
-        <Image source={pic} style={{width: 920, height: 50}}/>
        
         
         

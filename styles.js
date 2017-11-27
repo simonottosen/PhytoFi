@@ -18,7 +18,10 @@ var styles = StyleSheet.create({
   liImg: {
     flex: 0,
     width: 150,
-    height: 150
+    height: 150,
+    borderRadius: 10,
+    margin: 50
+
   },
 
   listview: {

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ReactNative from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import * as firebase from 'firebase';
-import StatusBar from './StatusBar';
 import styles from '../styles';
 const {
   ActivityIndicator,
@@ -15,7 +14,7 @@ const {
   TouchableHighlight
 } = ReactNative;
 
-class PhotoPage extends Component {
+class Plants extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -35,14 +34,15 @@ class PhotoPage extends Component {
   }
   render() {
     return (
-      <View style={{paddingTop:50}}>
+      <View style={{paddingTop:50,  padding: 40,  margin: 10, justifyContent: 'center', alignItems: 'center' }}>
       <Image 
             style={styles.liImg}
             source={{uri: this.props.item.url}}
           />
-        <Text style={styles.liText}>{this.props.item.temperature}</Text>
+        <Text style={styles.liText}> Temperaturen på denne plante er {this.props.item.temperature} på en skala fra 0 til 10.</Text>
         <Text style={styles.liText}>{this.props.item.water} - {this._renderCalc()}</Text>
         <Text style={styles.liText}>{this.props.item.waterRef}</Text>
+
         <Button
           onPress={this._onPress.bind(this)}
           title='Back'/>
@@ -50,4 +50,4 @@ class PhotoPage extends Component {
     );
   }
 }
-module.exports = PhotoPage;
+module.exports = Plants;
