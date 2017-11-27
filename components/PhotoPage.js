@@ -35,7 +35,11 @@ class PhotoPage extends Component {
   }
   render() {
     return (
-      <View>
+      <View style={{paddingTop:50}}>
+      <Image 
+            style={styles.liImg}
+            source={{uri: this.props.item.url}}
+          />
         <Text style={styles.liText}>{this.props.item.temperature}</Text>
         <Text style={styles.liText}>{this.props.item.water} - {this._renderCalc()}</Text>
         <Text style={styles.liText}>{this.props.item.waterRef}</Text>
