@@ -24,6 +24,14 @@ var styles = StyleSheet.create({
 
   },
 
+circles: {
+  flexDirection: 'row',
+  alignItems: 'center',
+},
+progress: {
+  margin: 10,
+},
+
   listview: {
     flex: 1,
   },

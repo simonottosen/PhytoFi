@@ -3,6 +3,8 @@ import ReactNative from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import * as firebase from 'firebase';
 import styles from '../styles';
+import * as Progress from 'react-native-progress';
+
 const {
   ActivityIndicator,
   Alert,
@@ -41,8 +43,11 @@ class Plants extends Component {
           />
         <Text style={styles.liText}> Temperaturen på denne plante er {this.props.item.temperature} på en skala fra 0 til 10.</Text>
         <Text style={styles.liText}>{this.props.item.water} - {this._renderCalc()}</Text>
-        <Text style={styles.liText}>{this.props.item.waterRef}</Text>
+        <Text style={styles.liText}>{this.props.item.waterRef}{"\n"}</Text>
 
+        <Text style={{fontWeight: 'bold', fontSize: 20}}> Waterlevel </Text>
+        <Progress.Bar progress={this.props.item.water / 10} width={200} size={50} height={50} margin={5} color={'red'} />
+        
         <Button
           onPress={this._onPress.bind(this)}
           title='Back'/>

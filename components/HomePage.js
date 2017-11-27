@@ -5,6 +5,7 @@ import * as firebase from 'firebase';
 import ActionButton from './ActionButton';
 import ListItem from './ListItem';
 import styles from '../styles';
+import * as Progress from 'react-native-progress';
 
 
 
@@ -69,6 +70,20 @@ export default class HomePage extends Component {
     if(this.state.text != '' && this.state.text != null){
       this.getWeather();
     }
+  }
+  animate() {
+    let progress = 0;
+    this.setState({ progress });
+    setTimeout(() => {
+      this.setState({ indeterminate: false });
+      setInterval(() => {
+        progress += Math.random() / 5;
+        if (progress > 1) {
+          progress = 1;
+        }
+        this.setState({ progress });
+      }, 500);
+    }, 1500);
   }
 
   getWeather() {
@@ -143,6 +158,7 @@ export default class HomePage extends Component {
 
       <ScrollView style={styles.boxView}>
         
+      <Progress.Bar progress={0.7} width={200} size={50} height={50} margin={60} />
 
 
         <ListView
@@ -153,6 +169,7 @@ export default class HomePage extends Component {
         <ListView
           dataSource={this.state.disSource}
           renderRow={this._renderItem.bind(this)}
+
         />
        
         
