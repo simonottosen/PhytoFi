@@ -53,14 +53,23 @@ image: {
 
 },
 
+<<<<<<< HEAD
 imageInfo:{
   width: 35, height: 35, marginLeft: 0, marginTop: 17,
+=======
+info: {
+  width: 35, height: 35, marginRight: 120, marginTop: 17,
+>>>>>>> a18bb41ae34a49f9d079ff7a4f02c2c3480bb4e5
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 1 },
   shadowOpacity: 0.2,
   shadowRadius: 2,
 },
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a18bb41ae34a49f9d079ff7a4f02c2c3480bb4e5
 
   li: {
     backgroundColor: '#fff',

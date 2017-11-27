@@ -14,7 +14,7 @@ class ListItem extends Component {
       );
     }else{
       return(
-      <Text>Dont water</Text>);
+      <Text>Don't water</Text>);
       
     }
 
@@ -38,14 +38,15 @@ class ListItem extends Component {
             style={styles.liImg}
             source={{uri: this.props.item.url}}
           />
-          {/* <Text style={styles.liText}>{this.props.item.weather}</Text>
+           {/* <Text style={styles.liText}>{this.props.item.weather}</Text>
           <Text style={styles.liText}>{this.props.item.fertilizer}</Text>
           <Text style={styles.liText}>{this.props.item.fertilizerRef}</Text>
-          <Text style={styles.liText}>{this.props.item.light}</Text> */}
-          {/* <Text style={styles.liText}>{this.props.item.temperature}</Text>
-          <Text style={styles.liText}>{this.props.item.water} - {this._renderCalc()}</Text>
-          <Text style={styles.liText}>{this.props.item.waterRef}</Text> */}
-                  <Text style={{fontSize: 12, textAlign: 'center'}}> Waterlevel </Text>
+          <Text style={styles.liText}>{this.props.item.light}</Text>
+           <Text style={styles.liText}>{this.props.item.temperature}</Text> 
+          <Text style={styles.liText}>{this.props.item.water} </Text>*/}
+            <Text style={{ fontSize: 12, textAlign: 'center'}}> {this._renderCalc()} your plants.</Text>
+          {/* <Text style={styles.liText}>{this.props.item.waterRef}</Text>  */}
+           <Text style={{fontWeight: 0.4, fontSize: 16, textAlign: 'center'}}> {"\n"}Waterlevel </Text>
 
           <View style={{alignItems:'center'}}>{this._renderBar()}</View>
         </View>
