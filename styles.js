@@ -45,7 +45,7 @@ listview: {
 },
 
 image: {
-  width: 35, height: 35, marginLeft: 55, marginTop: 17,
+  width: 35, height: 35, marginLeft: 45, marginTop: 17,
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 1 },
   shadowOpacity: 0.2,
@@ -53,23 +53,16 @@ image: {
 
 },
 
-<<<<<<< HEAD
 imageInfo:{
-  width: 35, height: 35, marginLeft: 0, marginTop: 17,
-=======
-info: {
-  width: 35, height: 35, marginRight: 120, marginTop: 17,
->>>>>>> a18bb41ae34a49f9d079ff7a4f02c2c3480bb4e5
+  width: 25, height: 25, marginTop: 25,
   shadowColor: '#000',
   shadowOffset: { width: 0, height: 1 },
   shadowOpacity: 0.2,
   shadowRadius: 2,
+  opacity: 0.5,
 },
 
-<<<<<<< HEAD
-=======
 
->>>>>>> a18bb41ae34a49f9d079ff7a4f02c2c3480bb4e5
 
   li: {
     backgroundColor: '#fff',

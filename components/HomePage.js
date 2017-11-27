@@ -16,11 +16,7 @@ export default class HomePage extends Component {
     super(props);
     this.state = {
       isLoading: true,
-<<<<<<< HEAD
       text: "Porto",
-=======
-      text: "Ohio",
->>>>>>> a18bb41ae34a49f9d079ff7a4f02c2c3480bb4e5
       //      text: props.city,
       uid: '',
       weather:'',
@@ -176,7 +172,7 @@ export default class HomePage extends Component {
   flexWrap: 'wrap'
 }}>
 
-<View style={{paddingLeft:7,}}>{this._renderIconInfo()}</View>
+<View style={{paddingLeft:13,}}>{this._renderIconInfo()}</View>
 <Image style={{justifyContent: 'center', marginLeft:80,
         alignItems: 'center',
          width: 143, height: 80,  paddingRight: 50,  paddingLeft:115,}}
@@ -187,16 +183,6 @@ export default class HomePage extends Component {
 
 {this._renderIconWeather()}
 
-
-
-
-
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> a18bb41ae34a49f9d079ff7a4f02c2c3480bb4e5
 {/* <TextInput 
     returnKeyLabel='Go' 
     returnKeyType='go' 
