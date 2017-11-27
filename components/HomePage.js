@@ -8,7 +8,6 @@ import ListItem from './ListItem';
 import styles from '../styles';
 
 
-
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -90,7 +89,7 @@ export default class HomePage extends Component {
 
   _renderItem(item) {
     const onPress = () => {
-      Actions.PhotoPage({ title: item.name, item: item, uid: this.state.uid });
+      Actions.PhotoPage({ pic: item.url, title: item.name, item: item, uid: this.state.uid });
     };
     return (
       <ListItem item={item} onPress={onPress} />
@@ -98,13 +97,6 @@ export default class HomePage extends Component {
   }
 
   render() {
-    let pic = {
-      uri: 'http://images5.fanpop.com/image/photos/29400000/White-writing-29491444-516-350.jpg'
-    };
-    
-
-
-    
     return (
 
 <View style={{flex: 1}}>
@@ -123,7 +115,6 @@ export default class HomePage extends Component {
  onPress={this.getWeather.bind(this)}
   title="Update"
   color="#841584"
-  accessibilityLabel="Learn more about this purple button"
 /></View>
 
 
@@ -131,18 +122,17 @@ export default class HomePage extends Component {
       <ScrollView style={styles.boxView}>
         
 
-        <Image source={pic} style={{width: 920, height: 50}}/>
 
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Text style={{backgroundColor: '#fff'}} >The weather in 6 hours will be {rowData.main}.</Text>}
+          renderRow={(rowData) => <Text style={{padding: 25,}} >The weather in 6 hours will be {rowData.main}.</Text>}
           
         />
-        <ListView
+        <ListView style={{width: 300,   margin: 25}}
           dataSource={this.state.disSource}
           renderRow={this._renderItem.bind(this)}
+          
         />
-        <Image source={pic} style={{width: 920, height: 50}}/>
        
         
         
