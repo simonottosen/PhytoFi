@@ -133,7 +133,7 @@ export default class HomePage extends Component {
 
 <View style={{flex: 1}}>
   
-<View style={{paddingTop:50}}>
+<View style={{paddingTop:5}}>
 
 <TextInput 
     returnKeyLabel='Go' 
@@ -158,15 +158,14 @@ export default class HomePage extends Component {
 
       <ScrollView style={styles.boxView}>
         
-      <Progress.Bar progress={0.7} width={200} size={50} height={50} margin={60} />
 
 
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Text style={{backgroundColor: '#fff'}} >The weather in {this.state.text} 6 hours will be {rowData.main}.</Text>}
+          renderRow={(rowData) => <Text style={{backgroundColor: '#fff'}} >The weather in  {this.state.text} 6 hours will be {rowData.main}.</Text>}
           
         />
-        <ListView
+        <ListView style={styles.container}
           dataSource={this.state.disSource}
           renderRow={this._renderItem.bind(this)}
 
