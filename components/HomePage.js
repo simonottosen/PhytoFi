@@ -53,10 +53,12 @@ export default class HomePage extends Component {
               weather: weather,
               fertilizer: item.val().fertilizer,
               light: item.val().light,
+              lightRef: ref.val().light,
               water: item.val().water,
               temperature: item.val().temperature,
               fertilizerRef: ref.val().fertilizer,
               waterRef: ref.val().water,
+              temperatureRef: ref.val().temperature,
               url: item.val().url,
               _key: item.key
             });
