@@ -175,7 +175,7 @@ export default class HomePage extends Component {
 <View style={{paddingLeft:13,}}>{this._renderIconInfo()}</View>
 <Image style={{justifyContent: 'center', marginLeft:80,
         alignItems: 'center',
-         width: 143, height: 80,  paddingRight: 50,  paddingLeft:115,}}
+         width: 143, height: 80,  paddingRight: 50,  paddingLeft:100,}}
          source={require('./LogoTrans.png')}
        /> 
        
