@@ -25,17 +25,80 @@ class Plants extends Component {
     this.state = {};
   }
 
-  _renderCalc(){
-    if(this.props.item.water < this.props.item.waterRef && this.props.item.weather != 'Rain'){
-    return(
-      
-      <Text>Water</Text>
-    );
-  }else{
-    return(
-    <Text>Dont water</Text>);
-    
+  _renderWater(){
+    if((this.props.item.waterRef-1) <= this.props.item.water){
+      return(
+        <Text>PERFECT</Text>
+      );
+    }
+    else if((this.props.item.waterRef-2)==this.props.item.water || (this.props.item.waterRef-3)==this.props.item.water){
+      return(
+        <Text>very good</Text>
+      );
+    }
+    else{
+      return(
+        <Text>SHIT</Text>
+      );
+    }
+  
+  
   }
+_renderSun(){
+  if((this.props.item.lightRef-1) <= this.props.item.light){
+    return(
+      <Text>PERFECT</Text>
+    );
+  }
+  else if((this.props.item.lightRef-2)==this.props.item.light || (this.props.item.lightRef-3)==this.props.item.light){
+    return(
+      <Text>very good</Text>
+    );
+  }
+  else{
+    return(
+      <Text>SHIT</Text>
+    );
+  }
+
+
+}
+_renderFertlizer(){
+  if((this.props.item.fertilizerRef-1) <= this.props.item.fertilizer){
+    return(
+      <Text>PERFECT</Text>
+    );
+  }
+  else if((this.props.item.fertilizerRef-2)==this.props.item.fertilizer || (this.props.item.fertilizerRef-3)==this.props.item.fertilizer){
+    return(
+      <Text>very good</Text>
+    );
+  }
+  else{
+    return(
+      <Text>SHIT</Text>
+    );
+  }
+
+
+}
+_renderTemp(){
+  if((this.props.item.temperatureRef-1) <= this.props.item.temperature){
+    return(
+      <Text>PERFECT</Text>
+    );
+  }
+  else if((this.props.item.temperatureRef-2)==this.props.item.temperature || (this.props.item.temperatureRed-3)==this.props.item.temperature){
+    return(
+      <Text>very good</Text>
+    );
+  }
+  else{
+    return(
+      <Text>SHIT</Text>
+    );
+  }
+
 
 }
   _renderBar(){
@@ -94,16 +157,21 @@ class Plants extends Component {
             style={styles.liImg}
             source={{uri: this.props.item.url}}
           />
-        <Text style={styles.liText}>{"\n"}Temperaturen på denne plante er {this.props.item.temperature} på en skala fra 0 til 10.</Text>
-        <Text style={styles.liText}>{this.props.item.water} - {this._renderCalc()}</Text>
+        <Text>
+        The level of feritilzer in the {this.props.item.name} is {this._renderFertlizer()}. While the level of sunlight that it gets is {this._renderSun()}. 
+        The water in the soil of the plant at the momemt is {this._renderWater()} at the moment, but be aware of the weather. Temps is {this._renderTemp()} (skriv her simon). In 6 hours we expect it to be . 
+          
+        </Text>
+        {/* <Text style={styles.liText}>{this.props.item.water} - {this._renderCalc()}</Text> */}
         <Text style={styles.liText}>{this.props.item.waterRef}{"\n"}</Text>
 
         <Text style={{fontWeight: 'bold', fontSize: 20}}> Waterlevel </Text>
-        {/* <Progress.Bar progress={this.props.item.water / 10} width={200} size={50} height={50} margin={5} color={'blue'} />); */}
         {this._renderBar()}
         <Button
           onPress={this._onPress.bind(this)}
           title='Back'/>
+
+          
       </ScrollView>
 
       </View>
