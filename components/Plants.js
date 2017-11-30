@@ -29,11 +29,13 @@ class Plants extends Component {
     if((this.props.item.waterRef-1) <= this.props.item.water){
       return(
         <Text>perfect and doesn't need any water for a while</Text>
+        
       );
     }
     else if((this.props.item.waterRef-2)==this.props.item.water || (this.props.item.waterRef-3)==this.props.item.water){
       return(
         <Text>very good but could take a bit more water</Text>
+        
       );
     }
     else{
@@ -85,7 +87,7 @@ _renderFertlizer(){
 _renderTemp(){
   if((this.props.item.temperatureRef-1) <= this.props.item.temperature){
     return(
-      <Text>is just right</Text>
+      <Text>is just the right temperature</Text>
     );
   }
   else if((this.props.item.temperatureRef-2)==this.props.item.temperature || (this.props.item.temperatureRed-3)==this.props.item.temperature){
@@ -104,11 +106,12 @@ _renderTemp(){
   _renderBar(){
     if(this.props.item.water < this.props.item.waterRef && this.props.item.weather != 'Rain'){
       return(
-        <Progress.Bar progress={this.props.item.water / 10} width={200} size={50} height={50} margin={5} color={'red'} />
+        <Progress.Bar progress={this.props.item.water / 10} width={250} size={50} height={10} margin={5} color={'green'} />
+        
       );
     }else{
       return(
-        <Progress.Bar progress={this.props.item.water / 10} width={200} size={50} height={50} margin={5} color={'blue'} />);
+        <Progress.Bar progress={this.props.item.water / 10} width={250} size={50} height={10} margin={5} color={'green'} />);
     }
   }
   _onPress(){
@@ -155,16 +158,22 @@ _renderTemp(){
             style={styles.liImg}
             source={{uri: this.props.item.url}}
           />
+          <Text style={{fontWeight: 'bold', fontSize: 15, textAlign: 'center'}}> ────  Fertilzer  ──── </Text>
+        {this._renderBar()}
 
         <Text>
-        The level of feritilzer in the {this.props.item.name} is {this._renderFertlizer()}.{"\n"} {"\n"}{this._renderSun()}. 
+        The level of feritilzer in the {this.props.item.name} is {this._renderFertlizer()}.{"\n"} 
+        </Text>
+        <Text style={{fontWeight: 'bold', fontSize: 15, textAlign: 'center'}}> ────  Sunlight  ──── </Text>
+        {this._renderBar()}
+        <Text>
+
+        {"\n"}{this._renderSun()}. 
         The water in the soil of the plant at the momemt is {this._renderWater()}.{"\n"}{"\n"}The outside enviroment is {this._renderTemp()}.{"\n"} 
           
         </Text>
         {/* <Text style={styles.liText}>{this.props.item.water} - {this._renderCalc()}</Text> */}
 
-        <Text style={{fontWeight: 'bold', fontSize: 20}}> Waterlevel </Text>
-        {this._renderBar()}
         <Button
           onPress={this._onPress.bind(this)}
           title='Back'/>
