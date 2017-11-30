@@ -28,17 +28,17 @@ class Plants extends Component {
   _renderWater(){
     if((this.props.item.waterRef-1) <= this.props.item.water){
       return(
-        <Text>PERFECT</Text>
+        <Text>perfect and doesn't need any water for a while</Text>
       );
     }
     else if((this.props.item.waterRef-2)==this.props.item.water || (this.props.item.waterRef-3)==this.props.item.water){
       return(
-        <Text>very good</Text>
+        <Text>very good but could take a bit more water</Text>
       );
     }
     else{
       return(
-        <Text>SHIT</Text>
+        <Text>isn't good and should be watered urgently</Text>
       );
     }
   
@@ -47,17 +47,17 @@ class Plants extends Component {
 _renderSun(){
   if((this.props.item.lightRef-1) <= this.props.item.light){
     return(
-      <Text>PERFECT</Text>
+      <Text>The sunlight is at a perfect level</Text>
     );
   }
   else if((this.props.item.lightRef-2)==this.props.item.light || (this.props.item.lightRef-3)==this.props.item.light){
     return(
-      <Text>very good</Text>
+      <Text>The level of sunlight is good, but for a perfect enviroment you could try to move it to a place with more sun</Text>
     );
   }
   else{
     return(
-      <Text>SHIT</Text>
+      <Text>At the moment it's very dark and will impact the health of the plant if it isn't moved to a place with more light</Text>
     );
   }
 
@@ -66,17 +66,17 @@ _renderSun(){
 _renderFertlizer(){
   if((this.props.item.fertilizerRef-1) <= this.props.item.fertilizer){
     return(
-      <Text>PERFECT</Text>
+      <Text>perfect and shouldn't be fertilized for a while</Text>
     );
   }
   else if((this.props.item.fertilizerRef-2)==this.props.item.fertilizer || (this.props.item.fertilizerRef-3)==this.props.item.fertilizer){
     return(
-      <Text>very good</Text>
+      <Text>very good, but could take a small handfull of fertilizer</Text>
     );
   }
   else{
     return(
-      <Text>SHIT</Text>
+      <Text>not very good. Try to get your hands on some fertilizer, or move it to a place in the garden with ferilized soil</Text>
     );
   }
 
@@ -85,17 +85,17 @@ _renderFertlizer(){
 _renderTemp(){
   if((this.props.item.temperatureRef-1) <= this.props.item.temperature){
     return(
-      <Text>PERFECT</Text>
+      <Text>is just right</Text>
     );
   }
   else if((this.props.item.temperatureRef-2)==this.props.item.temperature || (this.props.item.temperatureRed-3)==this.props.item.temperature){
     return(
-      <Text>very good</Text>
+      <Text>is a bit cold for the plant and it could be moved to a warmer place or you could place a heatinglamp nearby</Text>
     );
   }
   else{
     return(
-      <Text>SHIT</Text>
+      <Text>is very cold and will kill the plant, if a heating lamp is not placed nearby. You could also try to place it inside the house, during the night</Text>
     );
   }
 
@@ -150,20 +150,18 @@ _renderTemp(){
 
       <ScrollView style={{paddingTop:1,  padding: 50,  margin: 5}}>
       <Text style={styles.title}>{this.props.item.name}</Text>
-      <Text style={{fontStyle: 'italic', fontSize: 11}}>{"\n"}We're measuring the {this.props.item.name} on a scale from 1 to 10, and compare the number to the reference on the perfect conditions for the plant.</Text>
-
 
       <Image 
             style={styles.liImg}
             source={{uri: this.props.item.url}}
           />
+
         <Text>
-        The level of feritilzer in the {this.props.item.name} is {this._renderFertlizer()}. While the level of sunlight that it gets is {this._renderSun()}. 
-        The water in the soil of the plant at the momemt is {this._renderWater()} at the moment, but be aware of the weather. Temps is {this._renderTemp()} (skriv her simon). In 6 hours we expect it to be . 
+        The level of feritilzer in the {this.props.item.name} is {this._renderFertlizer()}.{"\n"} {"\n"}{this._renderSun()}. 
+        The water in the soil of the plant at the momemt is {this._renderWater()}.{"\n"}{"\n"}The outside enviroment is {this._renderTemp()}.{"\n"} 
           
         </Text>
         {/* <Text style={styles.liText}>{this.props.item.water} - {this._renderCalc()}</Text> */}
-        <Text style={styles.liText}>{this.props.item.waterRef}{"\n"}</Text>
 
         <Text style={{fontWeight: 'bold', fontSize: 20}}> Waterlevel </Text>
         {this._renderBar()}

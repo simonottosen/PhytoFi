@@ -31,6 +31,25 @@ var styles = StyleSheet.create({
     justifyContent: 'center'
   },
 
+
+  toolbar:{
+    backgroundColor:'#81c04d',
+    paddingTop:30,
+    paddingBottom:10,
+    flexDirection:'row'    //Step 1
+},
+toolbarButton:{
+    width: 50,            //Step 2
+    color:'#fff',
+    textAlign:'center'
+},
+toolbarTitle:{
+    color:'#fff',
+    textAlign:'center',
+    fontWeight:'bold',
+    flex:1                //Step 3
+},
+
 circles: {
   flexDirection: 'row',
   alignItems: 'center',
