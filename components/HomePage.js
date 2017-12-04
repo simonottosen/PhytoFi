@@ -20,6 +20,7 @@ export default class HomePage extends Component {
       //      text: props.city,
       uid: '',
       weather:'',
+      apiTemp:'',
       reference: {}, 
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,}),
@@ -80,7 +81,7 @@ export default class HomePage extends Component {
 
   getWeather() {
     var that = this;
-    fetch('http://api.openweathermap.org/data/2.5/weather?q='+this.state.text+'&APPID=f873241aae3dee39adf62042e70a44c9')
+    fetch('http://api.openweathermap.org/data/2.5/weather?q='+this.state.text+'&APPID=f873241aae3dee39adf62042e70a44c9&units=metric')
       .then((response) => response.json())
       .then((responseJson) => {
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -88,6 +89,7 @@ export default class HomePage extends Component {
           isLoading: false,
           dataSource: ds.cloneWithRows(responseJson.weather),
           weather: responseJson.weather[0].main,
+          apiTemp: responseJson.main.temp,
         }, function() {
         });
         that.listenForItems(that, that.itemsRef, that.refRef, responseJson.weather[0].main);
@@ -95,7 +97,7 @@ export default class HomePage extends Component {
         
       })
       .catch((error) => {
-        alert("Fejl");
+        alert(error);
       });
     
   }
@@ -125,7 +127,7 @@ export default class HomePage extends Component {
   _renderIconWeather() {
     if(this.state.weather == 'Clear'){
       return(
-        <TouchableOpacity onPress={() => {Alert.alert("The weather in 6 hours in " + this.state.text, "All clear and sunny!")}} rejectResponderTermination>
+        <TouchableOpacity onPress={() => {Alert.alert("The weather in 6 hours in " + this.state.text, "All clear and sunny!\n Temperature: " + this.state.apiTemp+ "°C")}} rejectResponderTermination>
         <Image style={styles.image}
           source={require('./sunny.png')}
         /> 
@@ -185,20 +187,7 @@ export default class HomePage extends Component {
 
 {this._renderIconWeather()}
 
-{/* <TextInput 
-    returnKeyLabel='Go' 
-    returnKeyType='go' 
-    onSubmitEditing={this.getWeather.bind(this)}
-    style={{height: 40, backgroundColor: '#f2f2f2'}}
-    placeholder= {"Indtast by"}
-    onChangeText={(text) => this.setState({text})}
-/>
-<Button style={{backgroundColor:'#fff'}}
- onPress={this.getWeather.bind(this)}
-  title="Update"
-  color="#841584"
-  accessibilityLabel="Learn more about this purple button"
-/> */}
+
 
 
 

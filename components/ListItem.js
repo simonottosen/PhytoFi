@@ -7,7 +7,7 @@ const { View, ListView, TouchableHighlight, Text, Image } = ReactNative;
 
 class ListItem extends Component {
   _renderCalc(){
-      if(this.props.item.water < this.props.item.waterRef && this.props.item.weather != 'Rain'){
+      if((this.props.item.water+1) < this.props.item.waterRef && this.props.item.weather != 'Rain'){
       return(
         
         <Text>Water</Text>
@@ -19,16 +19,43 @@ class ListItem extends Component {
     }
 
   }
-  _renderBar(){
-    if(this.props.item.water < this.props.item.waterRef && this.props.item.weather != 'Rain'){
+
+  _renderWaterBar(){
+    if((this.props.item.waterRef-1) <= this.props.item.water){
+      
       return(
-        <Progress.Bar progress={this.props.item.water / 10} width={150} size={20} height={10} margin={5} color={'red'} />
+        <Progress.Bar progress={this.props.item.water /this.props.item.waterRef} width={150} size={20} height={10} margin={5} color={'green'} />
+        
       );
-    }else{
+    }else if((this.props.item.waterRef-4)>=this.props.item.water ){
+      if(this.props.item.weather == 'Rain'){
+        return(
+          <Progress.Bar progress={this.props.item.water /this.props.item.waterRef} width={150} size={20} height={10} margin={5} color={'green'} />);
+      }else{
       return(
-        <Progress.Bar progress={this.props.item.water / 10} width={150} size={20} height={10} margin={5} color={'blue'} />);
+        <Progress.Bar progress={this.props.item.water /this.props.item.waterRef} width={150} size={20} height={10} margin={5} color={'red'} />);
+      }
+    }else{
+      if(this.props.item.weather == 'Rain'){
+        return(
+          <Progress.Bar progress={this.props.item.water /this.props.item.waterRef} width={150} size={20} height={10} margin={5} color={'green'} />);
+      }else{
+      return(
+        <Progress.Bar progress={this.props.item.water /this.props.item.waterRef} width={150} size={20} height={10} margin={5} color={'yellow'} />);
+      }
+      
     }
   }
+  // _renderBar(){
+  //   if(this.props.item.water < this.props.item.waterRef && this.props.item.weather != 'Rain'){
+  //     return(
+  //       <Progress.Bar progress={this.props.item.water / 10} width={150} size={20} height={10} margin={5} color={'red'} />
+  //     );
+  //   }else{
+  //     return(
+  //       <Progress.Bar progress={this.props.item.water / 10} width={150} size={20} height={10} margin={5} color={'blue'} />);
+  //   }
+  // }
   render() {
     return (
       <TouchableHighlight onPress={this.props.onPress}>
@@ -48,7 +75,7 @@ class ListItem extends Component {
           {/* <Text style={styles.liText}>{this.props.item.waterRef}</Text>  */}
            <Text style={{fontWeight: 0.4, fontSize: 16, textAlign: 'center'}}> {"\n"}Waterlevel </Text>
 
-          <View style={{alignItems:'center'}}>{this._renderBar()}</View>
+          <View style={{alignItems:'center'}}>{this._renderWaterBar()}</View>
         </View>
       </TouchableHighlight>
 

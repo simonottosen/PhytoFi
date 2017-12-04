@@ -103,17 +103,69 @@ _renderTemp(){
 
 
 }
-  _renderBar(){
-    if(this.props.item.water < this.props.item.waterRef && this.props.item.weather != 'Rain'){
+  _renderWaterBar(){
+    if((this.props.item.waterRef-1) <= this.props.item.water){
       return(
-        <Progress.Bar progress={this.props.item.water / 10} width={250} size={50} height={10} margin={5} color={'green'} />
+        <Progress.Bar progress={this.props.item.water /this.props.item.waterRef} width={250} size={50} height={10} margin={5} color={'green'} />
         
       );
+    }else if((this.props.item.waterRef-4)>=this.props.item.water ){
+      return(
+        <Progress.Bar progress={this.props.item.water /this.props.item.waterRef} width={250} size={50} height={10} margin={5} color={'red'} />);
     }else{
       return(
-        <Progress.Bar progress={this.props.item.water / 10} width={250} size={50} height={10} margin={5} color={'green'} />);
+        <Progress.Bar progress={this.props.item.water /this.props.item.waterRef} width={250} size={50} height={10} margin={5} color={'yellow'} />);
+      
     }
   }
+  _renderFertBar(){
+    if((this.props.item.fertilizerRef-1) <= this.props.item.fertilizer){
+      return(
+        <Progress.Bar progress={this.props.item.fertilizer /this.props.item.fertilizerRef} width={250} size={50} height={10} margin={5} color={'green'} />
+        
+      );
+    }else if((this.props.item.fertilizerRef-4)>=this.props.item.fertilizer ){
+      return(
+        <Progress.Bar progress={this.props.item.fertilizer /this.props.item.fertilizerRef} width={250} size={50} height={10} margin={5} color={'red'} />);
+    }else{
+      return(
+        <Progress.Bar progress={this.props.item.fertilizer /this.props.item.fertilizerRef} width={250} size={50} height={10} margin={5} color={'yellow'} />);
+      
+    }
+  }
+
+  _renderLightBar(){
+    if((this.props.item.lightRef-1) <= this.props.item.light){
+      return(
+        <Progress.Bar progress={this.props.item.light /this.props.item.lightRef} width={250} size={50} height={10} margin={5} color={'green'} />
+        
+      );
+    }else if((this.props.item.lightRef-4)>=this.props.item.light ){
+      return(
+        <Progress.Bar progress={this.props.item.light /this.props.item.lightRef} width={250} size={50} height={10} margin={5} color={'red'} />);
+    }else{
+      return(
+        <Progress.Bar progress={this.props.item.light /this.props.item.lightRef} width={250} size={50} height={10} margin={5} color={'yellow'} />);
+      
+    }
+  }
+  _renderTempBar(){
+    if((this.props.item.temperatureRef-1) <= this.props.item.temperature){
+      return(
+        <Progress.Bar progress={this.props.item.temperature /this.props.item.temperatureRef} width={250} size={50} height={10} margin={5} color={'green'} />
+        
+      );
+    }else if((this.props.item.temperatureRef-4)>=this.props.item.temperature ){
+      return(
+        <Progress.Bar progress={this.props.item.temperature /this.props.item.temperatureRef} width={250} size={50} height={10} margin={5} color={'red'} />);
+    }else{
+      return(
+        <Progress.Bar progress={this.props.item.temperature /this.props.item.temperatureRef} width={250} size={50} height={10} margin={5} color={'yellow'} />);
+      
+    }
+  }
+
+ 
   _onPress(){
     Actions.pop();
   }
@@ -122,30 +174,24 @@ _renderTemp(){
 
 
 <View style={{flex: 1}}>
-  
+<View style={{paddingTop:20, paddingLeft:0,   flexDirection: 'row',
+  flexWrap: 'wrap'
+}}>
 
-<View style={{paddingTop:20, paddingLeft:115}}>
-
-<Image style={{justifyContent: 'center',
+ <View style={{paddingTop:15, marginLeft:10,}}><Button
+          onPress={this._onPress.bind(this)}
+          title='Back'/></View>
+<Image style={{justifyContent: 'center', marginLeft:50,
         alignItems: 'center',
-         width: 143, height: 80,  paddingRight: 50}}
+         width: 143, height: 80,  marginRight:60}}
          source={require('./LogoTrans.png')}
        /> 
+       
 
-{/* <TextInput 
-    returnKeyLabel='Go' 
-    returnKeyType='go' 
-    onSubmitEditing={this.getWeather.bind(this)}
-    style={{height: 40, backgroundColor: '#f2f2f2'}}
-    placeholder= {"Indtast by"}
-    onChangeText={(text) => this.setState({text})}
-/>
-<Button style={{backgroundColor:'#fff'}}
- onPress={this.getWeather.bind(this)}
-  title="Update"
-  color="#841584"
-  accessibilityLabel="Learn more about this purple button"
-/> */}
+
+
+
+
 
 
 
@@ -158,25 +204,35 @@ _renderTemp(){
             style={styles.liImg}
             source={{uri: this.props.item.url}}
           />
-          <Text style={{fontWeight: 'bold', fontSize: 15, textAlign: 'center'}}> ────  Fertilzer  ──── </Text>
-        {this._renderBar()}
+          <Text style={{fontWeight: 'bold', fontSize: 15, textAlign: 'center'}}> ─────  Fertilzer  ───── </Text>
+        {this._renderFertBar()}
 
         <Text>
         The level of feritilzer in the {this.props.item.name} is {this._renderFertlizer()}.{"\n"} 
         </Text>
-        <Text style={{fontWeight: 'bold', fontSize: 15, textAlign: 'center'}}> ────  Sunlight  ──── </Text>
-        {this._renderBar()}
+        <Text style={{fontWeight: 'bold', fontSize: 15, textAlign: 'center'}}> ─────  Sunlight  ───── </Text>
+        {this._renderLightBar()}
         <Text>
 
-        {"\n"}{this._renderSun()}. 
-        The water in the soil of the plant at the momemt is {this._renderWater()}.{"\n"}{"\n"}The outside enviroment is {this._renderTemp()}.{"\n"} 
+        {"\n"}{this._renderSun()}. {"\n"} 
+        
+        
           
         </Text>
+        <Text style={{fontWeight: 'bold', fontSize: 15, textAlign: 'center'}}> ──────  Water  ────── </Text>
+        {this._renderWaterBar()}
+        <Text>
+        {"\n"}The water in the soil of the plant at the momemt {this._renderWater()}.{"\n"} 
+          </Text>
+
+          <Text style={{fontWeight: 'bold', fontSize: 15, textAlign: 'center'}}> ────  Temperature  ──── </Text>
+        {this._renderTempBar()}
+        <Text>
+        {"\n"}The outside enviroment {this._renderTemp()}.{"\n"} 
+          </Text>
         {/* <Text style={styles.liText}>{this.props.item.water} - {this._renderCalc()}</Text> */}
 
-        <Button
-          onPress={this._onPress.bind(this)}
-          title='Back'/>
+       
 
           
       </ScrollView>
