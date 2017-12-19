@@ -16,8 +16,7 @@ export default class HomePage extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      text: "Porto",
-      //      text: props.city,
+      text: props.city,
       uid: '',
       weather:'',
       apiTemp:'',
@@ -199,10 +198,7 @@ export default class HomePage extends Component {
         
 
 
-        {/* <ListView 
-          dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Text style={{backgroundColor: '#fff'}} >The weather in  {this.state.text} 6 hours will be {rowData.main}.</Text>}
-        /> */}
+       
 
         <ListView style={styles.container}
           dataSource={this.state.disSource}
